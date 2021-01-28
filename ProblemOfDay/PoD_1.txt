@@ -1,2 +1,0 @@
-For all E > 0 there exists N > 0 s.t. (n >= N implies |a_n-a| <= E)
-
