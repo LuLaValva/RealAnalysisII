@@ -1,4 +1,45 @@
-\documentclass[12pt]{article}
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\title{Definitions and Theorems}
+\author{Lucas LaValva}
+\date{\today}
+
 \begin{document}
-Hello World!
+\maketitle
+
+%---------------------------------------------------
+\section{Unit 0 --- Review}
+\begin{definition}[Convergence]
+    The sequence $a_n$ converges to $L$ when there exists
+    N such that for all $n>\mathrm{N}$ and $\varepsilon>0$,
+    $\left\lvert a_n-L\right\rvert\leq \varepsilon$.
+\end{definition}
+\begin{definition}[Continuity at point]
+    A function $f(x)$ is continuous at point $p$ if, given
+    $\varepsilon>0$, there exists $\delta>0$ such that if
+    $\left\lvert p-x \right\rvert<\delta$ then
+    $\left\lvert f(p)-f(x)\right\rvert<\varepsilon$.
+\end{definition}
+\begin{definition}[Uniform Continuity]
+    A function $f(x)$ is uniformly continuous on domain
+    $D\subset \mathbb{R}$ if, for $\varepsilon>0$, there
+    exists $\delta>0$ such that for all $x,y\in  D$,
+    $\left\lvert y-x\right\rvert<\delta \implies
+        \left\lvert f(y)-f(x)\right\rvert <\varepsilon$.
+\end{definition}
+\begin{definition}[Differentiability]
+    A function $f(x)$ is differentiable at point $p$ if,
+    given $\varepsilon>0$, there exists $\delta>0$ such
+    that $\left\lvert f(p+\delta)-f(p)\right\rvert
+        <\varepsilon$.
+\end{definition}
+
+%---------------------------------------------------
 \end{document}
