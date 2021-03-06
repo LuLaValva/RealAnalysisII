@@ -1,0 +1,402 @@
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+
+\title{Real Analysis Homework (Part I)}
+\author{Lucas LaValva}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{4}
+
+\section{Sequences of Functions}
+\subsection{Pointwise and Uniform Convergence}
+\begin{enumerate}
+      \setcounter{enumi}{1}
+      \item Suppose that $g$ is a continuous function on $[a,b]$.
+            \begin{enumerate}
+                  \item Prove that if $f_n\to f$ pointwise,
+                        then $gf_n\to gf$ pointwise.
+                  \item Prove that if $f_n\to f$ uniformly,
+                        then $gf_n\to gf$ uniformly.
+            \end{enumerate}
+            \setcounter{enumi}{4}
+      \item Prove that $f_n(x)=(x-\frac{1}{n})^2$ converges uniformly
+            on any finite interval
+            \setcounter{enumi}{6}
+      \item Let $f_n(x) = \frac{nx}{1+n^2x^2}$. Prove that $f_n\to 0$
+            pointwise but not uniformly on $[0,1]$.
+            \setcounter{enumi}{13}
+      \item \begin{enumerate}
+                  \item Prove that $(1+\frac{x}{n})^n\to e^x$
+                        for all $x$.
+                  \item Prove that $(1+\frac{x}{n})^n\to e^x$
+                        uniformly on any finite interval $[a,b]$.
+                  \item Prove that the convergence is not
+                        uniform on $\mathbb{R}$.
+            \end{enumerate}
+\end{enumerate}
+
+\subsection{Limit Theorems}
+\begin{enumerate}
+      \setcounter{enumi}{1}
+      \item Compute the following limits:
+            \begin{enumerate}
+                  \item $\lim_{n\to \infty}\int_0^1(x+\frac{1}{n})^2dx$.
+                  \item $\lim_{n\to \infty}\int_1^2e^{-nx}dx$.
+                  \item $\lim_{n\to \infty}\int_0^{\frac{\pi}{2}}
+                              \sin (x+\frac{1}{n})dx$.
+                  \item $\lim_{n\to \infty}\int_0^1(1+\frac{x}{n})^ndx$.
+            \end{enumerate}
+            \setcounter{enumi}{3}
+      \item Let ${f_n}$ be a sequence of continuous functions on a finite
+            interval $[a,b]$ that converges uniformly to $f$. Show that for
+            all continuous functions $g$ on $[a,b]$,
+            \[
+                  \lim_{x \to \infty}\int_a^bf_n(t)g(t)dt = \int_a^bf(t)g(t)dt.
+            \]
+            \setcounter{enumi}{6}
+      \item Suppose that ${f_n}$ is a sequence of continuous functions on an
+            open interval $(a,b)$ that converges uniformly to $f$ on $(a,b)$.
+            Suppose that each $f_n$ is uniformly continuous on $(a,b)$. Prove
+            that $f$ is uniformly continuous on $(a,b)$.
+            \setcounter{enumi}{14}
+      \item Suppose that ${f_n}$ is a sequence of continuous functions on a
+            finite interval $[a,b]$. Suppose that $f_n\to 0$ pointwise
+            on $[a,b]$ and that for each $x\epsilon [a,b]$ the sequence of
+            numbers ${f_n(x)}$ is nonincreasing. Prove that $f_n\to 0$
+            uniformly.
+\end{enumerate}
+
+\subsection{The Supremum Norm}
+\begin{enumerate}
+      \setcounter{enumi}{1}
+      \item Let $f$ and $g$ be continuous functions on $[a,b]$.
+            \begin{enumerate}
+                  \item Use the triangle inequality to prove that
+                        \[
+                              \lvert
+                              \lVert f\rVert_\infty - \lVert g\rVert_\infty
+                              \rvert \leq \lVert f-g\rVert_\infty
+                        \]
+                  \item Suppose that $f_n\to f$ in the sup norm. Prove
+                        that $\lVert f_n\rVert_\infty\to\lVert f\rVert_\infty$.
+            \end{enumerate}
+      \item Let $C_b(\mathbb{R})$ denote the set of bounded continuous functions
+            on $\mathbb{R}$. Prove that $C_b(\mathbb{R})$ is complete in the sup
+            norm.
+            \setcounter{enumi}{4}
+      \item Let the functions $f_n$ be defined on $[0,1]$ by
+            \begin{equation}
+                  f_n(x)=\begin{cases}
+                        1
+                         & 0\leq x \leq \frac{1}{2}                     \\
+
+                        1-n(x-\frac{1}{2})
+                         & \frac{1}{2} < x \leq \frac{1}{2}+\frac{1}{n} \\
+
+                        0
+                         & \frac{1}{2}+\frac{1}{n} < x \leq 1
+                  \end{cases}
+            \end{equation}
+            and define
+            \begin{equation}
+                  f(x)=\begin{cases}
+                        1 & 0 \leq x \leq \frac{1}{2} \\
+                        0 & \frac{1}{2} < x \leq 1.
+                  \end{cases}
+            \end{equation}
+            \begin{enumerate}
+                  \item Prove that $f_n\to f$ pointwise on $[0,1]$.
+                  \item Prove that $\lVert f-f_n\rVert_\infty=1$ for each $n$ so
+                        that $f_n$ does not converge to $f$ in the $sup$ norm.
+                  \item Explain how you could have predicted the result of part
+                        (b) simply by using theorem 5.2.1.
+                  \item Prove that $\lVert f-f_n\rVert_1\to 0$ as $n\to \infty$.
+            \end{enumerate}
+            \setcounter{enumi}{6}
+      \item Let $C^{(1)}[a,b]$ denote the set of continuously differentiable
+            functions on a finite interval $[a,b]$. For each $f$ in
+            $C^{(1)}[a,b]$, define $\lVert f\rVert \equiv \lVert f\rVert_\infty
+                  + \lVert f'\rVert_\infty$.
+            \begin{enumerate}
+                  \item Show that $\lVert f\rVert$ has the properties (a), (b),
+                        and (c) of Proposition 5.3.1.
+                  \item Prove that $C^{(1)}[a,b]$ is complete in the norm
+                        $\lVert f\rVert$.
+            \end{enumerate}
+\end{enumerate}
+
+\setcounter{subsection}{4}
+\subsection{The Calculus of Variations}
+\begin{enumerate}
+      \item Suppose that $H(x)$ is a continuous function on the interval
+            $[x_1, x_2]$ and that
+            \begin{equation}
+                  \int_{x_1}^{x_2}H(x)\eta (x)dx = 0
+                  \label{eq:5.5_e1}
+            \end{equation}
+            for all twice continuously differentiable functions $\eta (x)$ that
+            vanish at the endpoints. Prove that $H(x)\equiv 0$ in the interval
+            as follows:
+            \begin{enumerate}
+                  \item Let $[a,b]$ be any finite interval. Show how to
+                        construct a twice continuously differentiable function
+                        on $\mathbb{R}$ which is strictly positive on the open
+                        interval $(a,b)$ and identically zero everywhere else.
+                  \item If $x_o$ is a point of $[x_1, x_2]$ such that $H(x_o)
+                              \neq 0$, show how to choose $\eta (x)$ so that
+                        hypothesis \eqref{eq:5.5_e1} is violated.
+            \end{enumerate}
+            \setcounter{enumi}{2}
+      \item Find a curve passing through $(1,2)$ and $(2,4)$ that is an extremal
+            for the functional
+            \begin{equation}
+                  J(x, y') = \int_1^2xy'(x)+(y'(x))^2dx.
+            \end{equation}
+            \setcounter{enumi}{4}
+      \item Find a curve passing through $(0,0)$ and $(1,1)$ that is an extremal
+            for the functional
+            \begin{equation}
+                  J(x, y, y') = \int_0^1(y'(x))^2+12xy(x)dx.
+            \end{equation}
+            \setcounter{enumi}{7}
+      \item Let $y(x)$ be a twice differentiable function whose graph passes
+            through the points $(x_1,y_1)$ and $(x_2,y_2)$ in the plane, where
+            $y_1>0$ and $y_2>0$.
+            \begin{enumerate}
+                  \item Show that the surface area generated when the curve is
+                        revolved around the $x$-axis is given by
+                        \begin{equation}
+                              J(y, y') = 2\pi\int_{x_1}^{x_2}y(x)
+                              \sqrt{1+(y'(x))^2}dx.
+                        \end{equation}
+                  \item Show that if $y(x)$ is an extremal, then $y(x)$
+                        satisfies
+                        \[
+                              \frac{y(x)}{\sqrt{1+(y'(x))^2}}=C_1.
+                        \]
+                  \item Show that the functions $y(x)=C_2\cosh
+                              (\frac{x-C_1}{C_2})$ satisfy the differential
+                        equation for all choices of $C_1$ and $C_2$.
+                  \item Show that $C_1$ and $C_2$ can be chosen so that the
+                        graph of $y$ passes through $(x_1, y_1)$ and
+                        $(x_2, y_2)$.
+            \end{enumerate}
+\end{enumerate}
+
+\subsection{Metric Spaces}
+\begin{enumerate}
+      \item Prove that the functions $\rho_1$ and $\rho_{\max}$ defined in
+            example 3 are indeed metrics on $\mathbb{R}^2$.
+            \setcounter{enumi}{9}
+      \item A metric space $(\mathcal{M}, \rho)$ is said to be \textit{discrete}
+            if for every $x\epsilon\mathcal{M}$ there is an $\varepsilon>0$ so
+            that $\rho(x, y)<\varepsilon$ implies $y=x$.
+            \begin{enumerate}
+                  \item Define a function $\delta$ on $\mathbb{R}$ by
+                        $\delta(x,x)=0$ and $\delta(x, y)=1$ if $x\neq y$. Prove
+                        that $(\mathbb{R}, \delta)$ is discrete.
+                  \item Prove that $(\mathbb{R}, \rho_2)$ is not discrete.
+                  \item Which of the metrics in Examples $1-5$ are discrete?
+                  \item In a discrete metric space $(\mathcal{M}, \rho)$, what
+                        are the convergent sequences?
+            \end{enumerate}
+            \setcounter{enumi}{11}
+      \item Prove that the metrics $\rho_1$, $\rho_{\max}$, and $\rho_2$ defined
+            in Example 3 are uniformly equivalent.
+            \setcounter{enumi}{13}
+      \item Let $\rho$ be the function defined on $\mathbb{R}\times\mathbb{R}$
+            by
+            \[
+                  \rho(x, y) = \frac{\lvert x-y\rvert}{1+\lvert x-y\rvert}.
+            \]
+            \begin{enumerate}
+                  \item Prove that $\rho$ is a metric.
+                  \item Prove that $\rho$ is equivalent to the Euclidean
+                        metric $\rho_2$.
+                  \item Prove that $\rho$ is not uniformly equivalent to
+                        $\rho_2$.
+            \end{enumerate}
+\end{enumerate}
+
+\subsection{The Contraction Mapping Principle}
+\begin{enumerate}
+      \setcounter{enumi}{3}
+      \item Which of the subsets of $\mathbb{R}^2$ are complete metric spaces
+            with the Euclidean metric?
+            \begin{enumerate}
+                  \item $\{(x, y)\in\mathbb{R}^2|x^2+y^2<1 \}$.
+                  \item $\{(x, y)\in\mathbb{R}^2|x\geq 1\text{ and }y\leq -2\}$.
+                  \item $\{(x, y)\in\mathbb{R}^2|y\in\mathbb{N} \}$.
+                  \item $\{(x, y)\in\mathbb{R}^2|f(x,y)=0 \}$, where $f$ is
+                        continuous on $\mathbb{R}^2$.
+            \end{enumerate}
+      \item Which of the following subsets of $C[a,b]$ are complete metric
+            spaces with the metric $\rho_\infty$?
+            \begin{enumerate}
+                  \item $\{f\in C[a,b]|f(x)>0\text{ for }x\in [a,b]\}$.
+                  \item $\{f\in C[a,b]|f(a)=0\}$.
+                  \item $\{f\in C[a,b]|f(x)=0\text{ for }a<c\leq x\leq d<b\}$.
+                  \item $\{f\in C[a,b]|\lvert f(x)\rvert\leq 2+f(x)^2$
+                        for $x\in[a,b]\}$.
+            \end{enumerate}
+            \setcounter{enumi}{9}
+      \item \begin{enumerate}
+                  \item Prove that if $\rho$ and $\sigma$ are uniformly
+                        equivalent metrics on $\mathcal{M}$, then
+                        $(\mathcal{M}, \rho)$ is complete only if
+                        $(\mathcal{M}, \sigma)$ is complete.
+                  \item Suppose that $\rho$ and $\sigma$ are equivalent metrics
+                        on $\mathcal{M}$. Show by example that it is possible
+                        that $(\mathcal{M}, \rho)$ is complete but
+                        $(\mathcal{M}, \sigma)$ is not complete.
+            \end{enumerate}
+            \setcounter{enumi}{11}
+      \item Let $\mathcal{M}$ be the set of continuous functions on $\mathbb{R}$
+            which vanish outside a finite interval (the interval may depend on
+            the function).
+            \begin{enumerate}
+                  \item Show that $\mathcal{M}$ is a metric space in the sup
+                        norm.
+                  \item Show that $\mathcal{M}$ is not complete.
+                  \item Show that $C_o(\mathbb{R})$, the continuous functions
+                        which go to zero at $\infty$, is complete in the sup
+                        norm.
+                  \item Prove that $\mathcal{M}$ is dense in $C_o(\mathbb{R})$.
+            \end{enumerate}
+\end{enumerate}
+
+\subsection{Normed Linear Spaces}
+\begin{enumerate}
+      \setcounter{enumi}{7}
+      \item Two norms, $\lVert\cdot\rVert_1$ and $\lVert\cdot\rVert_2$, are
+            called \textbf{equivalent} if there are positive constants, $c$ and
+            $d$, so that
+            \[
+                  c\lVert v\rVert_1\leq\lVert v\rVert_2\leq d\lVert v\rVert_1
+            \]
+            for all $v\in V$.
+            \begin{enumerate}
+                  \item Prove that if $\lVert\cdot\rVert_1$ and
+                        $\lVert\cdot\rVert_2$  are equivalent, then $V$ is
+                        complete in $\lVert\cdot\rVert_1$ if and only if $V$ is
+                        complete in $\lVert\cdot\rVert_2$.
+                  \item Prove that the $\lVert\cdot\rVert_1$ norm and the
+                        Euclidean norm $\lVert\cdot\rVert_2$ are equivalent on
+                        $\mathbb{R}^n$ by showing that
+                        \[
+                              \lVert x\rVert_2^2
+                              \leq \lVert x\rVert_1^2
+                              \leq n\lVert x\rVert_2^2.
+                        \]
+                  \item Prove that the sup norm and the $L_1$ norm are not
+                        equivalent on $C[a,b]$.
+            \end{enumerate}
+            \setcounter{enumi}{9}
+      \item Let $\{x_i\}_{i=1}^N$ and $\{y_i\}_{i=1}^N$ be real numbers and not
+            all zero. Define a quadratic, $p(\lambda)$, by
+            \[
+                  p(\lambda)=\sum_{i=1}^N(x_i+\lambda y_i)^2.
+            \]
+            Explain why $p(\lambda)$ has either two complex roots or a double
+            real root. Use this fact to prove the \textbf{Cauchy-Schwartz
+                  Inequality}
+            \begin{equation}
+                  \left\lvert\sum_{i=1}^Nx_iy_i\right\rvert \leq
+                  \left(\sum_{i=1}^Nx_i^2\right)^\frac{1}{2}
+                  \left(\sum_{i=1}^Ny_i^2\right)^\frac{1}{2}.
+            \end{equation}
+            Under what circumstances does one get equality?
+      \item Let $c_o$ denote the set of sequences, ${a_j}$, of real numbers such
+            that $a_j\to 0$ as $j\to \infty$. Define
+            \[
+                  \lVert\{a_j\}_\infty\rVert\equiv\sup_j\lvert a_j\rvert.
+            \]
+            \begin{enumerate}
+                  \item Explain why $c_o$ is a normed linear space with the norm
+                        $\lVert\cdot\rVert_\infty$.
+                  \item Prove that $c_o$ is complete.
+                  \item Show that the set of sequences which are zero after
+                        finitely many terms is dense in $c_o$.
+                  \item Show that $c_o$ is not dense in $\ell_\infty$.
+            \end{enumerate}
+            \setcounter{enumi}{13}
+      \item For $f\in C^{(2)}[a,b]$, define $\lVert f\rVert
+                  \equiv\lVert f\rVert_\infty + \lVert f'\rVert_\infty
+                  + \lVert f''\rVert_\infty$.
+            \begin{enumerate}
+                  \item Explain why $C^{(2)}[a,b]$ is a vector space.
+                  \item Prove that $\lVert\cdot\rVert$ is a norm in
+                        $C^{(2)}[a,b]$.
+                  \item Prove that $C^{(2)}[a,b]$ is complete in the norm
+                        $\lVert\cdot\rVert$.
+                  \item Prove that $\frac{d^2}{dx^2}$ is a linear
+                        transformation from $C^{(2)}[a,b]$ to $C[a,b]$.
+                  \item Prove that $\{f\in C^{(2)}[a,b]|f''(x)\equiv 0\}$
+                        is a vector space. It is called the \textbf{kernel} of
+                        $\frac{d^2}{dx^2}$.
+                  \item Identify the functions in the kernel.
+                  \item Is the linear transformation $\frac{d^2}{dx^2}$
+                        one-to-one?
+            \end{enumerate}
+\end{enumerate}
+
+\subsection*{Projects}
+\begin{enumerate}
+      \item The purpose of this project is to prove that if $f$ is a continuous
+            function on $[0,1]$, then $\lVert f\rVert_p\to\lVert f\rVert_\infty$
+            as $p\to \infty$.
+            \begin{enumerate}
+                  \item Show that for each $p$,
+                        $\lVert f\rVert_p\leq\lVert f\rVert_\infty$.
+                  \item Explain why $\lvert f(x)\rvert$ is continuous on
+                        $[0,1]$. Let $x_o$ be the point where
+                        $\lvert f(x)\rvert$ achieves its maximum. Explain why
+                        $\lvert f(x_o)\rvert=\lVert f\rVert_\infty$.
+                  \item Assume that $x_o$ is not one of the endpoints and let
+                        $\varepsilon>0$ be given. Explain why you can choose
+                        a $\mu>0$ so that
+                        $\lvert f(x)\rvert=\lVert f\rVert - \varepsilon$ for all
+                        $x\in[x_o-\mu,x_o+\mu]$.
+                  \item Prove that $\int_0^1\lvert f(x)\rvert^pdx \geq
+                              2\mu(\lVert f\rVert_\infty-\varepsilon)^p$ for
+                        all $p$.
+                  \item Show that for $p$ large enough, $\lVert f\rVert_\infty
+                              \geq \lVert f\rVert_p \geq \lVert f\rVert_\infty
+                              -2\varepsilon$ and conclude that $lim_{p\to\infty}
+                              \lVert f\rVert_p = \lVert f\rVert_\infty$.
+            \end{enumerate}
+            \setcounter{enumi}{3}
+      \item The purpose of this project is to solve the differential equation
+            satisfied by the extremal function for the Brachistochrone problem.
+            The extremal $y(x)$ satisfies $y(x)(1+(y'(x))^2)=C_1$ for some
+            constant $C_1$.
+            \begin{enumerate}
+                  \item Explain why $C_1<0$ and why $y'(x)$ must blow up as
+                        $x\searrow  0$. What does it mean geometrically that
+                        $y'(x)$ blows up?
+                  \item Prove that $\frac{dx}{dy}=\sqrt{\frac{y}{C_1-y}}$.
+                  \item We introduce a new variable $\theta$ as a parameter and
+                        try to find $x$ and $y$ in terms of $\theta$. Let $y$
+                        and $\theta$ be related by the equation
+                        $y=C_1(\sin\theta)^2$. Use the chain rule to prove that
+                        \[
+                              \frac{dx}{d\theta}=C_1(1-\cos 2\theta).
+                        \]
+                  \item Find $x(\theta)$ in terms of $C_1$ and a new
+                        $C_2$.
+                  \item Show that the constants $C_1$ and $C_2$ can be chosen
+                        so that the curve $(x(\theta),y(\theta))$ passes through
+                        the points $(0, 0)$ and $(x_1, y_1)$.
+                  \item Generate the graph of the curve $(x(\theta),y(\theta))$.
+                        Why do you think that the curve which gives the shortest
+                        time of descent is so steep near the origin?
+            \end{enumerate}
+\end{enumerate}
+
+\end{document}

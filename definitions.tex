@@ -36,9 +36,16 @@
 \end{definition}
 \begin{definition}[Differentiability]
     A function $f(x)$ is differentiable at point $p$ if,
-    given $\varepsilon>0$, there exists $\delta>0$ such
-    that $\left\lvert f(p+\delta)-f(p)\right\rvert
-        <\varepsilon$.
+    given $\varepsilon>0$, there exists $h>0$ such
+    that $\left\lvert
+        \frac{f(p+h)-f(p)}{h} - f'(x)
+        \right\rvert<\varepsilon$.
+\end{definition}
+\begin{definition}[Cauchy Sequence]
+    ${a_n}$ is a Cauchy sequence if there exists
+    $N>0$ such that, given $\varepsilon>0$,
+    $n, m > N \implies
+        \left\lvert a_n-a_m\right\rvert <\varepsilon$.
 \end{definition}
 
 %---------------------------------------------------
