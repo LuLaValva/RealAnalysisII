@@ -1,12 +1,22 @@
 \documentclass{article}
+% Control margins of the page
+% \usepackage[margin=0.5in,top=1in]{geometry}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage[utf8]{inputenc}
+\usepackage{titling}
 
-\title{Real Analysis Homework (Part I)}
+
+\title{Real Analysis II - Homework I}
 \author{Lucas LaValva}
 \date{\today}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\theauthor}
+\rhead{\thetitle}
 
 \begin{document}
 \maketitle
@@ -21,23 +31,106 @@
             \begin{enumerate}
                   \item Prove that if $f_n\to f$ pointwise,
                         then $gf_n\to gf$ pointwise.
+                        \begin{proof}
+                              Because $f_n\to f$ pointwise, we know that,
+                              given $\varepsilon > 0$ and $x\in [a,b]$,
+                              there exists $N_0$ such that for all
+                              $n>N_0$, $\lvert f_n(x)-f(x)\rvert<\varepsilon$.
+                              Let $g$ be a continuous function on $[a,b]$, and
+                              choose $N_1>N_0\times\max(\lvert g(x)\rvert)$. Then
+                              \begin{align*}
+                                    \lvert f_n(x)-f(x)\rvert                                         & < \varepsilon                        \\
+                                    \lvert g(x)\rvert\lvert f_n(x)-f(x)\rvert                        & < \lvert g(x)\rvert\varepsilon       \\
+                                    \lvert g(x)f_n(x)-g(x)f(x)\rvert                                 & < \max(\lvert g(x)\rvert)\varepsilon \\
+                                    \frac{\lvert g(x)f_n(x)-g(x)f(x)\rvert}{\max(\lvert g(x)\rvert)} & < \varepsilon
+                              \end{align*}
+                              We know that $g$ is continuous on $[a,b]$, which implies that
+                              $\max(g(x))$ is a real number less than infinity.
+                              This shows that there exists $N_0\leq N_1\leq \infty$ such that for
+                              all $n>N_1$, $\lvert g(x)f_n(x)-g(x)f(x)\rvert<\varepsilon$.
+                        \end{proof}
                   \item Prove that if $f_n\to f$ uniformly,
                         then $gf_n\to gf$ uniformly.
+                        \begin{proof}
+                              Given $\varepsilon>0$, there exists an $N$ so that
+                              $n>N$ implies $\lvert f_n(x)-f(x)\rvert < \varepsilon$
+                              for all $x\in [a,b]$. Then
+                              \begin{align*}
+                                    \lvert f_n(x)-f(x)\rvert                                         & < \varepsilon                        \\
+                                    \lvert g(x)\rvert\lvert f_n(x)-f(x)\rvert                        & < \lvert g(x)\rvert\varepsilon       \\
+                                    \lvert g(x)f_n(x)-g(x)f(x)\rvert                                 & < \max(\lvert g(x)\rvert)\varepsilon \\
+                                    \frac{\lvert g(x)f_n(x)-g(x)f(x)\rvert}{\max(\lvert g(x)\rvert)} & < \varepsilon
+                              \end{align*}
+                              We know that $g$ is continuous on $[a,b]$, which implies that
+                              $\max(g(x))$ is a real number less than infinity.
+                              This shows that there exists $N_0\leq N_1\leq \infty$ such that for
+                              all $n>N_1$, $\lvert g(x)f_n(x)-g(x)f(x)\rvert<\varepsilon$.
+
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{4}
       \item Prove that $f_n(x)=(x-\frac{1}{n})^2$ converges uniformly
             on any finite interval
+            \begin{proof}
+                  Let $f(x)=x^2$. Given $\varepsilon>0$, choose $N>\frac{2\max\{\lvert a\rvert, \lvert b\rvert\}+1}{\varepsilon}$. Then, for
+                  all $x\in [a,b]$, $n>N$ implies
+                  \begin{align*}
+                        \lvert f_n(x)-f(x)\rvert & = \left\lvert \left(x-\frac{1}{n}\right)^2-x^2\right\rvert    \\
+                                                 & = \left\lvert x^2-2x\frac{1}{n}+\frac{1}{n}^2-x^2\right\rvert \\
+                                                 & = \left\lvert \frac{2x}{n}+\frac{1}{n^2}\right\rvert          \\
+                                                 & \leq \frac{2\lvert x\rvert}{n}+\frac{1}{n^2}                  \\
+                                                 & \leq \frac{2\lvert x\rvert}{n}+\frac{1}{n}                    \\
+                                                 & \leq \frac{2\lvert x\rvert+1}{n}                              \\
+                                                 & \leq \frac{2\lvert x\rvert+1}{N}                              \\
+                                                 & \leq \frac{2\max\{\lvert a\rvert, \lvert b\rvert\}+1}{N}      \\
+                                                 & \leq \varepsilon
+                  \end{align*}
+                  Thus $f_n$ converges uniformly on $[a,b]$.
+            \end{proof}
             \setcounter{enumi}{6}
       \item Let $f_n(x) = \frac{nx}{1+n^2x^2}$. Prove that $f_n\to 0$
             pointwise but not uniformly on $[0,1]$.
+            \begin{proof}
+                  Let $f(x)=0$. Given $\varepsilon>0$ and $x\in[0,1]$,
+                  choose $N>\frac{1}{x\varepsilon}$.
+                  Then, for all $n>N$, we have the following if $x=0$:
+                  \begin{align*}
+                        \lvert f_n(x)-f(x)\rvert & = \left\lvert\frac{n(0)}{1+n^2(0)^2}-0\right\rvert \\
+                                                 & = \left\lvert\frac{0}{1}\right\rvert               \\
+                                                 & = \lvert0\rvert=0\leq\varepsilon
+                  \end{align*}
+                  and the following if $x\neq 0\implies x>0$:
+                  \begin{align*}
+                        \lvert f_n(x)-f(x)\rvert & = \left\lvert\frac{nx}{1+n^2x^2}-0\right\rvert \\
+                                                 & < \frac{nx}{n^2x^2} = \frac{1}{nx}             \\
+                                                 & < \frac{1}{Nx}                                 \\
+                                                 & < \varepsilon
+                  \end{align*}
+                  Therefore, $f_n(x)$ converges pointwise. However, given any
+                  $\varepsilon>0$, there exists some $x$ such that
+                  $\frac{1}{Nx}\geq\varepsilon$. Therefore, $f_n(x)$ does not
+                  converge uniformly.
+            \end{proof}
             \setcounter{enumi}{13}
       \item \begin{enumerate}
                   \item Prove that $(1+\frac{x}{n})^n\to e^x$
                         for all $x$.
+                        \begin{proof}
+                              \begin{align*}
+                                      & \left\lvert(1+\frac{x}{n})^n-e^x\right\rvert \\
+                                    = &                                              % TODO
+                              \end{align*}
+                        \end{proof}
                   \item Prove that $(1+\frac{x}{n})^n\to e^x$
                         uniformly on any finite interval $[a,b]$.
+                        \begin{proof}
+                              % TODO
+                        \end{proof}
                   \item Prove that the convergence is not
                         uniform on $\mathbb{R}$.
+                        \begin{proof}
+                              % TODO
+                        \end{proof}
             \end{enumerate}
 \end{enumerate}
 
@@ -47,29 +140,125 @@
       \item Compute the following limits:
             \begin{enumerate}
                   \item $\lim_{n\to \infty}\int_0^1(x+\frac{1}{n})^2dx$.
+                        \begin{align*}
+                                & \lim_{n\to \infty}\int_0^1(x+\frac{1}{n})^2dx \\
+                              \intertext{$(x+\frac{1}{n})^2$ converges uniformly on $[0,1]$, so we can bring the limit in.}
+                              = & \int_0^1\lim_{n\to \infty}(x+\frac{1}{n})^2dx \\
+                              = & \int_0^1x^2dx                                 \\
+                              = & \left.\frac{x^3}{3}\right\rvert_0^1           \\
+                              = & \frac{1^3}{3}-\frac{0^3}{3}                   \\
+                              = & \frac{1}{3}
+                        \end{align*}
                   \item $\lim_{n\to \infty}\int_1^2e^{-nx}dx$.
+                        \begin{align*}
+                                & \lim_{n\to \infty}\int_1^2e^{-nx}dx \\
+                              \intertext{$e^{-nx}$ converges uniformly on $[1,2]$, so we can bring the limit in.}
+                              = & \int_1^2\lim_{n\to \infty}e^{-nx}dx \\
+                              = & \int_1^20dx                         \\
+                              = & 0
+                        \end{align*}
                   \item $\lim_{n\to \infty}\int_0^{\frac{\pi}{2}}
                               \sin (x+\frac{1}{n})dx$.
+                        \begin{align*}
+                                & \lim_{n\to \infty}\int_0^{\frac{\pi}{2}}\sin (x+\frac{1}{n})dx \\
+                              \intertext{$\sin (x+\frac{1}{n})$ converges uniformly on $[0,{\frac{\pi}{2}}]$, so we can bring the limit in.}
+                              = & \int_0^{\frac{\pi}{2}}\lim_{n\to \infty}\sin (x+\frac{1}{n})dx \\
+                              = & \int_0^{\frac{\pi}{2}}\sin(x)dx                                \\
+                              = & \left.-\cos(x)\right\rvert_0^{\frac{\pi}{2}}                   \\
+                              = & -\cos\left({\frac{\pi}{2}}\right)+\cos(0)                      \\
+                              = & 0 + 1 = 1
+                        \end{align*}
                   \item $\lim_{n\to \infty}\int_0^1(1+\frac{x}{n})^ndx$.
+                        \begin{align*}
+                                & \lim_{n\to \infty}\int_0^1(1+\frac{x}{n})^ndx \\
+                              \intertext{$(1+\frac{x}{n})^n$ converges uniformly on $[0,1]$, so we can bring the limit in.}
+                              = & \int_0^1\lim_{n\to \infty}(1+\frac{x}{n})^ndx \\
+                              = & \int_0^1e^xdx                                 \\
+                              = & \left.e^x\right\rvert_0^1                     \\
+                              = & e^1-e^0                                       \\
+                              = & e-1 \approx 1.732
+                        \end{align*}
             \end{enumerate}
             \setcounter{enumi}{3}
-      \item Let ${f_n}$ be a sequence of continuous functions on a finite
+      \item Let $\{f_n\}$ be a sequence of continuous functions on a finite
             interval $[a,b]$ that converges uniformly to $f$. Show that for
             all continuous functions $g$ on $[a,b]$,
             \[
                   \lim_{x \to \infty}\int_a^bf_n(t)g(t)dt = \int_a^bf(t)g(t)dt.
             \]
+            \begin{proof}
+                  Let $\varepsilon>0$ be given. Since $f_n\to f$ uniformly, we
+                  know that there exists some $N$ so that for all $n>N$,
+                  \[
+                        \lvert f_n-f\rvert < \frac{\varepsilon}{\int_a^b\lvert g(x)\rvert dx} \text{for all }x\in [a,b].
+                  \]
+                  We know that, because $g$ is a continuous function,
+                  $\int_a^b\lvert g(x)\rvert dx$ exists for all $a,b\in \mathbb{R}$. Thus,
+                  \begin{align*}
+                        \left\lvert\int_a^b(f_n(x)g(x))dx-\int_a^b(f(x)g(x))dx\right\rvert & = \left\lvert\int_a^b(f_n(x)g(x)-f(x)g(x))dx\right\rvert                       \\
+                                                                                           & \leq \int_a^b\lvert f_n(x)g(x)-f(x)g(x)\rvert dx                               \\
+                                                                                           & = \int_a^b\lvert g(x)\rvert\lvert f_n(x)-f(x)\rvert dx                         \\
+                                                                                           & < \int_a^b\lvert g(x)\rvert\frac{\varepsilon}{\int_a^b\lvert g(x)\rvert dx} dx \\
+                                                                                           & = \frac{\varepsilon}{\int_a^b\lvert g(x)\rvert dx}\int_a^b\lvert g(x)\rvert dx \\
+                                                                                           & =\varepsilon
+                  \end{align*}
+                  Therefore, $\int_a^bf_n(t)g(t)dt\to \int_a^bf(t)g(t)dt$.
+            \end{proof}
             \setcounter{enumi}{6}
-      \item Suppose that ${f_n}$ is a sequence of continuous functions on an
+      \item Suppose that $\{f_n\}$ is a sequence of continuous functions on an
             open interval $(a,b)$ that converges uniformly to $f$ on $(a,b)$.
             Suppose that each $f_n$ is uniformly continuous on $(a,b)$. Prove
             that $f$ is uniformly continuous on $(a,b)$.
+            \begin{proof}
+                  Let $\varepsilon>0$ be given and $x_o\in(a,b)$. Since $f_n\to f$ uniformly, we
+                  know there exists some $N$ so that for all $n>N$,
+                  \begin{equation}
+                        \lvert f_n-f\rvert < \frac{\varepsilon}{3}
+                        \label{eq:5.2_7_uniformConvergence}
+                  \end{equation}
+                  Since $f_N$ is continuous, we know that there exists some
+                  $\delta$ so that
+                  \begin{equation}
+                        \lvert f_N(x)-f_N(x_o)\rvert < \frac{\varepsilon}{3}
+                        \text{ if } \lvert x-x_o\rvert < \delta.
+                        \label{eq:5.2_7_continuous}
+                  \end{equation}
+                  Using \eqref{eq:5.2_7_uniformConvergence} and
+                  \eqref{eq:5.2_7_continuous}, we can show that
+                  \begin{align*}
+                        \lvert f(x)-f(x_o)\rvert & = \lvert f_N(x)-f(x)+f_N(x)-f_N(x_o)+f_N(x_o)-f(x_o)\rvert                              \\
+                                                 & \leq \lvert f_N(x)-f(x)\rvert+\lvert f_N(x)-f_N(x_o)\lvert+\rvert f_N(x_o)-f(x_o)\rvert \\
+                                                 & < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3}                 \\
+                                                 & = \varepsilon.
+                  \end{align*}
+                  Therefore, $f$ must be continuous since $\lvert f(x)-f(x_o)\rvert<\varepsilon$.
+            \end{proof}
             \setcounter{enumi}{14}
       \item Suppose that ${f_n}$ is a sequence of continuous functions on a
             finite interval $[a,b]$. Suppose that $f_n\to 0$ pointwise
             on $[a,b]$ and that for each $x\epsilon [a,b]$ the sequence of
-            numbers ${f_n(x)}$ is nonincreasing. Prove that $f_n\to 0$
+            numbers $\{f_n(x)\}$ is nonincreasing. Prove that $f_n\to 0$
             uniformly.
+            \begin{proof}
+                  Let it be known that $\varepsilon>0$. Since $f_n\to 0$ pointwise,
+                  we know there exists some $N$ for each $x\in[a,b]$ so that for
+                  all $n>N$
+                  \begin{equation}
+                        \lvert f_n(x)-0\rvert<\varepsilon.
+                        \label{eq:5.2_15_pointwiseConvergence}
+                  \end{equation}
+                  We also know that, since $f_n$ is nonincreasing at each $x_o$,
+                  \begin{equation}
+                        f_{n+1}(x_o) \leq f_n(x_o).
+                        \label{eq:5.2_15_nonincreasing}
+                  \end{equation}
+                  Using \eqref{eq:5.2_15_pointwiseConvergence} and
+                  \eqref{eq:5.2_15_nonincreasing}, we can show that
+                  \begin{align*}
+                        \lvert f_n(x)-0\rvert & = \lvert f_n(x)\rvert    \\
+                                              & \leq \lvert f_n(x)\rvert
+                  \end{align*}% TODO
+            \end{proof}
 \end{enumerate}
 
 \subsection{The Supremum Norm}
@@ -83,12 +272,54 @@
                               \lVert f\rVert_\infty - \lVert g\rVert_\infty
                               \rvert \leq \lVert f-g\rVert_\infty
                         \]
+                        \begin{proof}
+                              We know that
+                              \begin{align*}
+                                    \lVert f\rVert_\infty                         & = \lVert f-g+g\rVert_\infty                          \\
+                                    \lVert f\rVert_\infty                         & \leq \lVert f-g\rVert_\infty + \lVert g\rVert_\infty \\
+                                    \lVert f\rVert_\infty - \lVert g\rVert_\infty & \leq \lVert f-g\rVert_\infty                         \\
+                                    \intertext{and}
+                                    \lVert g\rVert_\infty                         & = \lVert g-f+f\rVert_\infty                          \\
+                                    \lVert g\rVert_\infty                         & \leq \lVert g-f\rVert_\infty + \lVert f\rVert_\infty \\
+                                    \lVert g\rVert_\infty - \lVert f\rVert_\infty & \leq \lVert g-f\rVert_\infty.                        \\
+                              \end{align*}
+                              Therefore, because we know that $\lVert f\rVert_\infty - \lVert g\rVert_\infty$
+                              and $\lVert g\rVert_\infty - \lVert f\rVert_\infty$ are both less than $\lVert f-g\rVert_\infty$,
+                              \[
+                                    \lvert
+                                    \lVert f\rVert_\infty - \lVert g\rVert_\infty
+                                    \rvert \leq \lVert f-g\rVert_\infty.
+                              \]
+                        \end{proof}
                   \item Suppose that $f_n\to f$ in the sup norm. Prove
                         that $\lVert f_n\rVert_\infty\to\lVert f\rVert_\infty$.
+                        \begin{proof}
+                              Let $\varepsilon>0$ be given.
+                              We know that $f_n\to f$ in the sup norm, so there
+                              must exist some $N$ such that for all $n>N$,
+                              \begin{equation}
+                                    \lVert f_n-f\rVert_\infty<\varepsilon.
+                                    \label{eq:5.3_2b_convergence}
+                              \end{equation}
+                              Using \eqref{eq:5.3_2b_convergence}, and the proposition
+                              from part (a), it is clear that
+                              \begin{align*}
+                                    \lvert\lVert f_n\rVert_\infty-\lVert f\rVert_\infty\rvert & \leq \lVert f_n-f\rVert_\infty \\
+                                                                                              & < \varepsilon.
+                              \end{align*}
+                              Therefore, $\lVert f_n\rVert_\infty\to\lVert f\rVert_\infty$.
+
+                        \end{proof}
             \end{enumerate}
       \item Let $C_b(\mathbb{R})$ denote the set of bounded continuous functions
             on $\mathbb{R}$. Prove that $C_b(\mathbb{R})$ is complete in the sup
             norm.
+            \begin{proof}
+                  Let $f_o$ be any arbitrary function in $C_b(\mathbb{R})$. Then
+                  because $f_o$ it is bounded, there must exist some $y$ such that
+                  for all $x$, $f_o(x)<y$. Therefore, $\lVert f_o\rVert_\infty$
+                  exists for all functions $f_o$ in $C_b(\mathbb{R})$.
+            \end{proof}
             \setcounter{enumi}{4}
       \item Let the functions $f_n$ be defined on $[0,1]$ by
             \begin{equation}
@@ -112,11 +343,58 @@
             \end{equation}
             \begin{enumerate}
                   \item Prove that $f_n\to f$ pointwise on $[0,1]$.
+                        \begin{proof}
+                              Let $\varepsilon>0$ be given and $N>\frac{1}{\varepsilon}$. Then, for
+                              all $n>N$, the following two cases can be
+                              shown: \\
+                              Case 1 — $0\leq x \leq \frac{1}{2}\implies$
+                              \begin{align*}
+                                    f_n(x)             & = 1    \\
+                                    f(x)               & = 1    \\
+                                    \therefore  f_n(x) & = f(x)
+                              \end{align*}
+                              Case 2 — $\frac{1}{2}< x \leq 1.$ \\
+                              Let us assume that $\frac{1}{2}< x \leq\frac{1}{2} + \frac{1}{n}$.
+                              Then
+                              \begin{align*}
+                                    \lvert\frac{1}{n}-0\rvert & = \lvert\frac{1}{n}\rvert \\
+                                                              & = \frac{1}{n}             \\
+                                                              & < \frac{1}{N}             \\
+                                                              & < \varepsilon.
+                              \end{align*}
+                              Therefore,
+                              \[
+                                    \frac{1}{2}< x \leq\frac{1}{2}
+                              \]
+                              This clearly cannot be true. Contraction!
+                              Thus,
+                              \begin{align*}
+                                    \frac{1}{2} + \frac{1}{n}< & x \leq 1 \\
+                                    f_n(x)                     & = 0      \\
+                                    f(x)                       & = 0      \\
+                                    \therefore f_n(x)          & = f(x)
+                              \end{align*}
+                              Therefore, $f_n(x)\to f(x)$ pointwise.
+                        \end{proof}
                   \item Prove that $\lVert f-f_n\rVert_\infty=1$ for each $n$ so
                         that $f_n$ does not converge to $f$ in the $sup$ norm.
+                        \begin{proof}
+                              % TODO
+                        \end{proof}
                   \item Explain how you could have predicted the result of part
                         (b) simply by using theorem 5.2.1.
+                        \begin{description}
+                              \item[Theorem 5.2.1] Let $\{f_n\}$ be a continuous
+                                    set of functions on a set $E\subseteq\mathbb{R}$.
+                                    If $f_n\to f$ uniformly on $E$ as $n\to\infty$ then
+                                    $f$ is continuous on $E$.
+                        \end{description}
+                        % TODO
                   \item Prove that $\lVert f-f_n\rVert_1\to 0$ as $n\to \infty$.
+                        \begin{proof}
+                              Let $\varepsilon>0$ be given, and choose $N>$.
+                              Then, for all $n>N$, % TODO
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{6}
       \item Let $C^{(1)}[a,b]$ denote the set of continuously differentiable
@@ -126,8 +404,79 @@
             \begin{enumerate}
                   \item Show that $\lVert f\rVert$ has the properties (a), (b),
                         and (c) of Proposition 5.3.1.
+                        \begin{description}
+                              \item[(a)] $\lVert f\rVert_\infty\geq 0$ and
+                                    $\lVert f\rVert_\infty=0$ if and only if $f$
+                                    is the zero function on $E$.
+                                    \begin{proof}
+                                          Let $f$ be any arbitrary function on
+                                          $C^{(1)}[a,b]$. Because $C^{(1)}[a,b]$
+                                          is continuously differentiable we know
+                                          that $f$ and $f'$ are both continuous,
+                                          and thus able to be measured by the sup
+                                          norm. Therefore,
+                                          \begin{align*}
+                                                (\lVert f\rVert_\infty \geq 0) & \land (\lVert f'\rVert_\infty  \geq 0) & \implies\lVert f\rVert_\infty + \lVert f'\rVert_\infty & \geq 0 \\
+                                                (\lVert f\rVert_\infty = 0)    & \land (\lVert f'\rVert_\infty  = 0)    & \implies\lVert f\rVert_\infty + \lVert f'\rVert_\infty & = 0    \\
+                                                (\lVert f\rVert_\infty > 0)    & \lor (\lVert f'\rVert_\infty  > 0)     & \implies\lVert f\rVert_\infty + \lVert f'\rVert_\infty & > 0
+                                          \end{align*}
+                                    \end{proof}
+                              \item[(b)] For every $\alpha\in\mathbb{R}$, we have
+                                    $\lVert\alpha f\rVert_\infty=\lvert\alpha\rvert\lVert f\rVert_\infty$.
+                                    \begin{proof}
+                                          \begin{align*}
+                                                \lvert\alpha\rvert\lVert f\rVert & = \lvert\alpha\rvert(\lVert f\rVert_\infty+\lVert f'\rVert_\infty)                 \\
+                                                                                 & = \lvert\alpha\rvert\lVert f\rVert_\infty+\lvert\alpha\rvert\lVert f'\rVert_\infty \\
+                                                                                 & = \lVert\alpha f\rVert_\infty+\lVert\alpha f'\rVert_\infty                         \\
+                                                                                 & = \lVert\alpha f\rVert
+                                          \end{align*}
+                                    \end{proof}
+                              \item[(c)] $\lVert f+g\rVert_\infty\leq\lVert f\rVert_\infty+\lVert g\rVert_\infty$
+                                    (the triangle inequality).
+                                    \begin{proof}
+                                          \begin{align*}
+                                                \lVert f+g\rVert & = \lVert f+g\rVert_\infty+\lVert (f+g)'\rVert_\infty                                                  \\
+                                                                 & = \lVert f+g\rVert_\infty+\lVert f'+g'\rVert_\infty                                                   \\
+                                                                 & = \lVert f+g\rVert_\infty+\lVert f'+g'\rVert_\infty                                                   \\
+                                                                 & \leq \lVert f\rVert_\infty + \lVert g\rVert_\infty + \lVert f'\rVert_\infty + \lVert g'\rVert_\infty  \\
+                                                                 & = (\lVert f\rVert_\infty + \lVert f'\rVert_\infty) + (\lVert g\rVert_\infty + \lVert g'\rVert_\infty) \\
+                                                                 & = \lVert f\rVert + \lVert g\rVert
+                                          \end{align*}
+                                    \end{proof}
+                        \end{description}
                   \item Prove that $C^{(1)}[a,b]$ is complete in the norm
                         $\lVert f\rVert$.
+                        \begin{proof}
+                              Let $\{f_n\}$ be a Cauchy sequence in the norm
+                              $\lVert f\rVert$, and $\varepsilon>0$ be given.
+                              Because $\{f_n\}$ is Cauchy, there exists some $N$
+                              such that, for all $n,m>N$,
+                              \begin{equation}
+                                    \lVert f_n-f_m\rVert<\varepsilon.
+                              \end{equation}
+                              Thus, for each $x\in\mathbb{R}$, since
+                              \begin{equation}
+                                    \lvert f_n(x)-f_m(x)\rvert \leq \lVert f_n(x)-f_m(x)\rVert
+                              \end{equation}
+                              we know that
+                              \begin{equation}
+                                    \lvert f_n(x)-f_m(x)\rvert < \varepsilon
+                                    \label{eq:5.3_7b_abs}
+                              \end{equation}
+                              Define $f(x)\equiv \lim_{n\to\infty}f_n(x)$. The
+                              absolute value is a continuous function, so
+                              \begin{equation*}
+                                    \lvert f(x)-f_m(x)\rvert = \lim_{n\to\infty}\lvert f_n(x)-f_m(x)\rvert.
+                              \end{equation*}
+                              Then, \eqref{eq:5.3_7b_abs} implies that for all
+                              $m>N$ and $x\in[a,b]$
+                              \[
+                                    \lvert f(x)-f_m(x)\rvert \leq \varepsilon
+                              \]
+                              This shows that $f_m\to f$ uniformly. Therefore,
+                              $f$ is continuous and $f_n$ converges to $f$ in
+                              the norm $\lVert f\rVert$.
+                        \end{proof}
             \end{enumerate}
 \end{enumerate}
 
