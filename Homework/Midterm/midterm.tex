@@ -497,9 +497,37 @@
                         construct a twice continuously differentiable function
                         on $\mathbb{R}$ which is strictly positive on the open
                         interval $(a,b)$ and identically zero everywhere else.
+                        \begin{align*}
+                              f(x)   & =\begin{cases}
+                                    0               & \text{if } x \leq a  \\
+                                    -(x-a)^3(x-b)^3 & \text{if } a < x < b \\
+                                    0               & \text{if } b \leq x
+                              \end{cases} \\
+                              f'(x)  & =\begin{cases}
+                                    0                                  & \text{if } x \leq a  \\
+                                    -3(x-a)^3(x-b)^2 - 3(x-a)^2(x-b)^3 & \text{if } a < x < b \\
+                                    0                                  & \text{if } b \leq x
+                              \end{cases} \\
+                              f''(x) & =\begin{cases}
+                                    0                          & \text{if } x \leq a \\
+                                    \begin{matrix}
+                                          -6(x-a)(x-b)^3 - 18(x-a)^2(x-b)^2 \\
+                                          - 6(x-a)^3(x-b)
+                                    \end{matrix} &
+                                    \text{if } a < x < b                             \\
+                                    0                          & \text{if } b \leq x
+                              \end{cases} \\
+                        \end{align*}
                   \item If $x_o$ is a point of $[x_1, x_2]$ such that $H(x_o)
                               \neq 0$, show how to choose $\eta (x)$ so that
                         hypothesis \eqref{eq:5.5_e1} is violated.
+                        \begin{proof}
+                              Any $\eta$ that contains no zeroes in
+                              $(a,b)$ will violate \eqref{eq:5.5_e1} if there
+                              exists some $x_o$ in which $H(x_o)\neq 0$. This
+                              is because $H(x_o)\eta(x_o)\neq 0$, which implies
+                              that the integral cannot be 0. % TODO: CAN BE IMPROVED
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{2}
       \item Find a curve passing through $(1,2)$ and $(2,4)$ that is an extremal
