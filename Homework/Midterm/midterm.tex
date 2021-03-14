@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage[utf8]{inputenc}
 \usepackage{titling}
+\usepackage{scrextend}
 
 
 \title{Real Analysis II - Homework I}
@@ -330,7 +331,7 @@
                         1-n(x-\frac{1}{2})
                          & \frac{1}{2} < x \leq \frac{1}{2}+\frac{1}{n} \\
 
-                        0
+                        0 % 
                          & \frac{1}{2}+\frac{1}{n} < x \leq 1
                   \end{cases}
             \end{equation}
@@ -502,12 +503,12 @@
                                     0               & \text{if } x \leq a  \\
                                     -(x-a)^3(x-b)^3 & \text{if } a < x < b \\
                                     0               & \text{if } b \leq x
-                              \end{cases} \\
+                              \end{cases}  \\
                               f'(x)  & =\begin{cases}
                                     0                                  & \text{if } x \leq a  \\
                                     -3(x-a)^3(x-b)^2 - 3(x-a)^2(x-b)^3 & \text{if } a < x < b \\
                                     0                                  & \text{if } b \leq x
-                              \end{cases} \\
+                              \end{cases}  \\
                               f''(x) & =\begin{cases}
                                     0                          & \text{if } x \leq a \\
                                     \begin{matrix}
@@ -535,12 +536,72 @@
             \begin{equation}
                   J(x, y') = \int_1^2xy'(x)+(y'(x))^2dx.
             \end{equation}
+            \begin{proof}
+                  Let $f(x, y, y')=xy'+(y')^2$. Using the Euler-Lagrange equation,
+                  \begin{align*}
+                        f_y(x, y') - \frac{d}{dx}f_{y'}(x, y')
+                         & = 0 - \frac{d}{dx}(x+2y') \\
+                         & = -(1+2y'')               \\
+                         & = -2y'' - 1.
+                  \end{align*}
+                  Therefore,
+                  \begin{align*}
+                        -2y'' - 1 & = 0                        \\
+                        y''       & = -\frac{1}{2}             \\
+                        y'        & = -\frac{x}{2} + c_1       \\
+                        y         & = -\frac{x^2}{4}+xc_1+c_2.
+                  \end{align*}
+                  To find the values of the constants, we are left with the following
+                  system of equations:
+                  \begin{align*}
+                        2           & = -\frac{1^2}{4}+(1)c_1+c_2                \\
+                        4           & = -\frac{2^2}{4}+(2)c_1+c_2                \\
+                        \\
+                        \frac{9}{4} & = c_1+c_2                                  \\
+                        5           & = 2c_1+c_2                                 \\
+                        \\
+                        c_1         & = \frac{11}{4}                             \\
+                        c_2         & = -\frac{1}{2}                             \\
+                        \\
+                        \therefore
+                        y(x)        & = -\frac{x^2}{4}+\frac{11x}{4}-\frac{1}{2}
+                  \end{align*}
+            \end{proof}
             \setcounter{enumi}{4}
       \item Find a curve passing through $(0,0)$ and $(1,1)$ that is an extremal
             for the functional
             \begin{equation}
                   J(x, y, y') = \int_0^1(y'(x))^2+12xy(x)dx.
             \end{equation}
+            \begin{proof}
+                  Let $f(x, y, y')=(y')^2+12xy$. Using the Euler-Lagrange equation,
+                  \begin{align*}
+                        f_y(x, y') - \frac{d}{dx}f_{y'}(x, y')
+                         & = 12x - \frac{d}{dx}2y' \\
+                         & = 12x - 2y''.
+                  \end{align*}
+                  Therefore,
+                  \begin{align*}
+                        12x - 2y'' & = 0                 \\
+                        y''        & = 6x                \\
+                        y'         & = 3x^2 + c_1        \\
+                        y          & = x^3 + xc_1 + c_2.
+                  \end{align*}
+                  We are left with the following system of equations:
+                  \begin{align*}
+                        0    & = (0)^3 + (0)c_1 + c_2 \\
+                        1    & = (1)^3 + (1)c_1 + c_2 \\
+                        \\
+                        0    & = c_2                  \\
+                        1    & = 1 + c_1 + c_2        \\
+                        \\
+                        c_1  & = 0                    \\
+                        c_2  & = 0                    \\
+                        \\
+                        \therefore
+                        y(x) & = x^3
+                  \end{align*}
+            \end{proof}
             \setcounter{enumi}{7}
       \item Let $y(x)$ be a twice differentiable function whose graph passes
             through the points $(x_1,y_1)$ and $(x_2,y_2)$ in the plane, where
@@ -552,11 +613,45 @@
                               J(y, y') = 2\pi\int_{x_1}^{x_2}y(x)
                               \sqrt{1+(y'(x))^2}dx.
                         \end{equation}
+                        \begin{proof}
+                              For any given $x_a$, $x_b$, where $x_1\leq x_a<x_b\leq x_2$,
+                              the there exists some frustrum of a cone generated when the segment
+                              between the points at $(x_a, y(x_a))$ and $(x_b, y(x_b))$ is revolved
+                              around the $x$-axis. To find the surface area of this frustrum,
+                              we can use
+                              \begin{align*}
+                                    A & = \frac{(\textrm{circumference of $x_a$'s circle}) + (\textrm{circumference of $x_b$'s circle})}{2} \\
+                                      & \phantom{=} \times (\textrm{length of diagonal})                                                    \\
+                                      & = \frac{2\pi y(x_a) + 2\pi y(x_b)}{2}\sqrt{(x_a-x_b)^2+((y(x_a)-y(x_b))^2)}                         \\
+                                      & = \pi(y(x_a)+y(x_b))\sqrt{\Delta x^2+\Delta y^2}                                                    \\
+                                      & = \pi(y(x_a)+y(x_b))\sqrt{\Delta x^2+(\frac{\Delta x\Delta y}{\Delta x})^2}                         \\
+                                      & = \pi(y(x_a)+y(x_b))\sqrt{\Delta x^2+\Delta x^2(\frac{\Delta y}{\Delta x})^2}                       \\
+                                      & = \pi(y(x_a)+y(x_b))\sqrt{1+(\frac{\Delta y}{\Delta x})^2}\Delta x.
+                              \end{align*}
+                              As $x_a\to x_b$, $A\to 2\pi y(x)\sqrt{1+(\frac{dy}{dx})^2}dx$. Then we can denote
+                              the surface area of this integral as
+                              \[
+                                    2\pi\int_{x_1}^{x_2}y(x)\sqrt{1+(y'(x))^2}dx.
+                              \]
+                        \end{proof}
                   \item Show that if $y(x)$ is an extremal, then $y(x)$
                         satisfies
                         \[
                               \frac{y(x)}{\sqrt{1+(y'(x))^2}}=C_1.
                         \]
+                        \begin{proof}
+                              If $y(x)$ is an extremal, then there exists some
+                              $f(x,y,y')$ such that
+                              \[
+                                    \int_{x_1}^{x_2} f(x,y(x),y'(x))dx
+                              \]
+                              has a local maximum or minimum at $y(x)$. Then,
+                              by the Euler-Lagrange equation,
+                              \[
+                                    f_y(x,y,y') - \frac{d}{dx}f_{y'}(x,y,y')=0.
+                              \]
+                              % TODO: I truly don't understand this one
+                        \end{proof}
                   \item Show that the functions $y(x)=C_2\cosh
                               (\frac{x-C_1}{C_2})$ satisfy the differential
                         equation for all choices of $C_1$ and $C_2$.
@@ -570,6 +665,67 @@
 \begin{enumerate}
       \item Prove that the functions $\rho_1$ and $\rho_{\max}$ defined in
             example 3 are indeed metrics on $\mathbb{R}^2$.
+            \begin{align*}
+                  \rho_1((x_1, y_1), (x_2, y_2))      & \equiv \lvert x_1-x_2\rvert + \lvert y_1-y_2\rvert        \\
+                  \rho_{\max}((x_1, y_1), (x_2, y_2)) & \equiv \max\{\lvert x_1-x_2\rvert, \lvert y_1-y_2\rvert\}
+            \end{align*}
+            \begin{proof}
+                  To prove that $\rho_1$ is a metric, we must show that it satisfies
+                  the following criteria:
+                  \begin{enumerate}
+                        \item $\forall (x_1,y_1),(x_2,y_2)\in\mathbb{R}^2, \rho_1((x_1,y_1),(x_2,y_2))\geq 0$
+                              \medbreak
+                              By definition, $\lvert x_1-x_2\rvert\geq 0$ and $\lvert y_1-y_2\rvert\geq 0$.
+                              Therefore, $\lvert x_1-x_2\rvert+\lvert y_1-y_2\rvert\geq 0$
+                              \medbreak
+                              $\rho_1=0$ iff $(x_1,y_1)=(x_2,y_2)$.
+                              \medbreak
+                              Let us assume that $(x_1,y_1)\neq (x_2,y_2)$. Then at least one of $\lvert x_1-x_2\rvert\neq 0$
+                              $\lvert y_1-y_2\rvert\neq 0$ is true. Therefore, $\lvert x_1-x_2\rvert+\lvert y_1-y_2\rvert> 0$.
+                              However, if $(x_1,y_1) = (x_2,y_2)$, then $\lvert x_1-x_2\rvert = \lvert y_1-y_2\rvert = 0$ and
+                              therefore $\rho_1((x_1,y_1),(x_2,y_2))=0$
+
+                        \item $\rho_1((x_1,y_1),(x_2,y_2)) = \rho_1((x_2,y_2),(x_1,y_1))$
+                              \medbreak
+                              By the commutative property of addition,
+                              $\lvert x_1-x_2\rvert+\lvert y_1-y_2\rvert=\lvert y_1-y_2\rvert+\lvert x_1-x_2\rvert$
+
+                        \item $\forall(x_1,y_1),(x_2,y_2),(x_3,y_3)\in\mathbb{R}^2,$ \\
+                              $\rho_1((x_1,y_1),(x_3,y_3))\leq \rho_1((x_1,y_1),(x_2,y_2))+\rho_1((x_2,y_2),(x_3,y_3))$
+                              \begin{align*}
+                                    \rho_1((x_1, y_1),(x_3,y_3)) & = \lvert x_1-x_3\rvert+\lvert y_1-y_3\rvert                                              \\
+                                                                 & = \lvert x_1-x_2+x_2-x_3\rvert+\lvert y_1-y_2+y_2-y_3\rvert                              \\
+                                                                 & \leq \lvert x_1-x_2\rvert+\lvert x_2-x_3\rvert+\lvert y_1-y_2\rvert+\lvert y_2-y_3\rvert \\
+                                                                 & = \rho_1((x_1,y_1),(x_2,y_2))+\rho_1((x_2,y_2),(x_3,y_3))
+                              \end{align*}
+                  \end{enumerate}
+            \end{proof}
+            \begin{proof}
+                  To prove that $\rho_{\max}$ is a metric, we must show that it satisfies
+                  the following criteria:
+                  \begin{enumerate}
+                        \item $\forall (x_1,y_1),(x_2,y_2)\in\mathbb{R}^2, \rho_{\max}((x_1,y_1),(x_2,y_2))\geq 0$
+                              \medbreak
+                              By definition, $\lvert x_1-x_2\rvert\geq 0$ and $\lvert y_1-y_2\rvert\geq 0$.
+                              Therefore, $\max(\lvert x_1-x_2\rvert,\lvert y_1-y_2\rvert)\geq 0$
+                              \medbreak
+                              $\rho_{\max}=0$ iff $(x_1,y_1)=(x_2,y_2)$
+                              \medbreak
+                              Let us assume that $(x_1,y_1)\neq (x_2,y_2)$. Then at least one of $\lvert x_1-x_2\rvert\neq 0$
+                              $\lvert y_1-y_2\rvert\neq 0$ is true. Therefore, $\max(\lvert x_1-x_2\rvert,\lvert y_1-y_2\rvert)> 0$.
+                              However, if $(x_1,y_1) = (x_2,y_2)$, then $\lvert x_1-x_2\rvert = \lvert y_1-y_2\rvert = 0$ and
+                              therefore $\rho_{\max}((x_1,y_1),(x_2,y_2))=0$
+                        \item $\rho_{\max}((x_1,y_1),(x_2,y_2)) = \rho_{\max}((x_2,y_2),(x_1,y_1))$
+                              \medbreak
+                              By definition, $\max$ is commutative and therefore $\rho_{max}$ is commutative.
+                        \item $\forall(x_1,y_1),(x_2,y_2),(x_3,y_3)\in\mathbb{R}^2,\rho_{\max}((x_1,y_1),(x_3,y_3))$\\
+                              \phantom{tabbing}$\leq \rho_{\max}((x_1,y_1),(x_2,y_2))+\rho_{\max}((x_2,y_2),(x_3,y_3))$
+                              \begin{align*}
+                                    \rho_{\max}(x_1,y_1), (x_3, y_3)) & = \max\{\lvert x_1-x_3\rvert,\lvert y_1-y_3\rvert\} \\
+                                                                      & =                                                   \\% TODO: I never figured this one out
+                              \end{align*}
+                  \end{enumerate}
+            \end{proof}
             \setcounter{enumi}{9}
       \item A metric space $(\mathcal{M}, \rho)$ is said to be \textit{discrete}
             if for every $x\epsilon\mathcal{M}$ there is an $\varepsilon>0$ so
@@ -578,14 +734,100 @@
                   \item Define a function $\delta$ on $\mathbb{R}$ by
                         $\delta(x,x)=0$ and $\delta(x, y)=1$ if $x\neq y$. Prove
                         that $(\mathbb{R}, \delta)$ is discrete.
+                        \medbreak
+                        $\delta(a,b)=\begin{cases}
+                                    0 & \textrm{if } a = b    \\
+                                    1 & \textrm{if } a \neq b
+                              \end{cases}$
+                        \begin{proof}
+                              Let $\varepsilon>0$. By definition, if $x\neq y$ then
+                              $\delta(x,y)=1$. Therefore, if $\varepsilon\leq 1$,
+                              $x\neq y\implies \delta(x,y)\geq\varepsilon$.
+                              Thus, the transposition is true:
+                              $\delta(x,y)<\varepsilon\implies x=y$ for all $\varepsilon<1$.
+                        \end{proof}
                   \item Prove that $(\mathbb{R}, \rho_2)$ is not discrete.
+                        \begin{equation}
+                              (\mathbb{R}^n,\rho_2(x,y)) = \sqrt{\sum_{i=1}^n\lvert x_i-y_i\rvert^2}
+                        \end{equation}
+                        \begin{proof}
+                              On $\mathbb{R}^1$,
+                              \begin{align*}
+                                    \rho_2(x,y) & = \sqrt{\lvert x-y\rvert^2} \\
+                                                & = \lvert x-y\rvert
+                              \end{align*}
+                              Let $\varepsilon>0$, and $x\in\mathbb{R}$. Then
+                              \begin{align*}
+                                    \rho_2(x, x+\frac{\varepsilon}{2}) & = \left\lvert x-(x+\frac{\varepsilon}{2})\right\rvert \\
+                                                                       & = \left\lvert -\frac{\varepsilon}{2}\right\rvert      \\
+                                                                       & = \frac{\varepsilon}{2}                               \\
+                                                                       & < \varepsilon
+                              \end{align*}
+                              Because $\varepsilon>0$, $x+\frac{\varepsilon}{2}\neq x$. Therefore, $\rho_2$
+                              is not discrete.
+                        \end{proof}
                   \item Which of the metrics in Examples $1-5$ are discrete?
+                        \medbreak
+                        Most metrics in these examples are not discrete. The only one I found
+                        was the one in example 5, where $\delta(q, p)$ is essentially normalized hamming
+                        distance:
+                        \begin{equation}
+                              \rho(x,y) \equiv \sum_{i=1}^N\delta(q_i, p_i)
+                        \end{equation}
                   \item In a discrete metric space $(\mathcal{M}, \rho)$, what
                         are the convergent sequences?
+                        \medbreak
+                        The only convergent sequences in discrete metrics are those
+                        that are constant under the metric space.
             \end{enumerate}
             \setcounter{enumi}{11}
       \item Prove that the metrics $\rho_1$, $\rho_{\max}$, and $\rho_2$ defined
             in Example 3 are uniformly equivalent.
+            \begin{align}
+                  \rho_1((x_1, y_1), (x_2, y_2))      & \equiv \lvert x_1-x_2\rvert + \lvert y_1-y_2\rvert        \\
+                  \rho_2((x_1, y_1), (x_2, y_2))      & \equiv \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}                   \\
+                  \rho_{\max}((x_1, y_1), (x_2, y_2)) & \equiv \max\{\lvert x_1-x_2\rvert, \lvert y_1-y_2\rvert\}
+            \end{align}
+            \begin{proof}
+                  Let $\varepsilon>0$ be given, and $p_1=(x_1,y_1)\in\mathbb{R},p_2=(x_2,y_2)\in \mathbb{R}^2$.
+                  Choose $\delta = \frac{\varepsilon}{2}$.
+                  Suppose that $\rho_1(p_1,p_2)<\delta$. It follows that
+                  \begin{align*}
+                        \rho_2(p_1, p_2) & = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}                                                                      \\
+                                         & = \sqrt{\lvert x_1-x_2\rvert^2 + \lvert y_1-y_2\rvert^2}                                                \\
+                                         & \leq \sqrt{\lvert x_1-x_2\rvert^2 + 2\lvert x_1-x_2\rvert\lvert y_1-y_2\rvert + \lvert y_1-y_2\rvert^2} \\
+                                         & = \sqrt{(\lvert x_1-x_2\rvert+\lvert y_1-y_2\rvert)^2}                                                  \\
+                                         & = \lvert x_1-x_2\rvert+\lvert y_1-y_2\rvert                                                             \\
+                                         & = \rho_1(p_1, p_2)                                                                                      \\
+                                         & < \delta < \varepsilon
+                  \end{align*}
+                  and that
+                  \begin{align*}
+                        \rho_{\max} & = \max\{\lvert x_1-x_2\rvert,\lvert y_1-y_2\rvert\} \\
+                                    & \leq 2(\lvert x_1-x_2\rvert+\lvert y_1-y_2\rvert)   \\
+                                    & = 2\rho_1(p_1, p_2)                                 \\
+                                    & < 2\delta = \varepsilon.
+                  \end{align*}
+                  On the other hand, suppose that $\rho_2<\delta$ and $\rho_{\max}<\delta$.
+                  Then
+                  \begin{align*}
+                        \rho_1 & = \lvert x_1-x_2\rvert + \lvert y_1-y_2\rvert \\
+                               & = \sqrt{(x_1-x_2)^2} + \sqrt{(y_1-y_2)^2}     \\
+                               & \leq 2\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}          \\
+                               & = 2\rho_2(p_1, p_2)                           \\
+                               & < 2\delta = \varepsilon
+                  \end{align*}
+                  and
+                  \begin{align*}
+                        \rho_1 & = \lvert x_1-x_2\rvert + \lvert y_1-y_2\rvert           \\
+                               & \leq 2\max\{\lvert x_1-x_2\rvert,\lvert y_1-y_2\rvert\} \\
+                               & = 2\rho_{\max}(p_1, p_2)                                \\
+                               & < 2\delta = \varepsilon
+                  \end{align*}
+                  Thus, $\rho_1$ is equivalent to $\rho_{\max}$ and $\rho_1$ is equivalent
+                  to $\rho_2$. By the transitive property, $\rho_{\max}$ is also equivalent
+                  to $\rho_2$.
+            \end{proof}
             \setcounter{enumi}{13}
       \item Let $\rho$ be the function defined on $\mathbb{R}\times\mathbb{R}$
             by
@@ -594,10 +836,64 @@
             \]
             \begin{enumerate}
                   \item Prove that $\rho$ is a metric.
+                        \medbreak
+                        By definition, $\lvert x-y\rvert > 0$. It follows that $\rho\geq0$.
+                        It also is worth noting that the absolute value function is only
+                        $0$ when $x=y$, and therefore $x\neq y\implies \rho>0$ and
+                        $x=y\implies\rho=0$. The absolute value function is also
+                        symmetrical, so $\rho(x,y)=\rho(y,x)$. Since
+                        \begin{align*}
+                              \rho(x,z) & = \frac{\lvert x-z\rvert}{1+\lvert x-z\rvert}                                                                               \\
+                                        & = \frac{\lvert x-y+y-z\rvert}{1+\lvert x-y+y-z\rvert}                                                                       \\
+                                        & = \frac{\lvert x-y\rvert+\lvert y-z\rvert}{1+\lvert x-y\rvert+\lvert y-z\rvert}                                             \\
+                                        & = \frac{\lvert x-y\rvert}{1+\lvert x-y\rvert+\lvert y-z\rvert}+\frac{\lvert y-z\rvert}{1+\lvert x-y\rvert+\lvert y-z\rvert} \\
+                                        & \leq \frac{\lvert x-y\rvert}{1+\lvert x-y\rvert}+\frac{\lvert y-z\rvert}{1+\lvert y-z\rvert}                                \\
+                                        & = \rho(x,y) + \rho(y,z),
+                        \end{align*}
+                        we see that the triangle inequality holds and therefore $\rho$
+                        is a metric on $\mathbb{R}\times\mathbb{R}$.
                   \item Prove that $\rho$ is equivalent to the Euclidean
                         metric $\rho_2$.
+                        \begin{proof}
+                              Let $\varepsilon>0$ be given and $x, y\in\mathbb{R}$.
+                              Choose $\delta=\frac{\varepsilon}{1+\lvert x-y\rvert}$ and suppose that $\rho_2(x,y)<\delta$.
+                              It follows that
+                              \begin{align*}
+                                    \rho(x, y) & = \frac{\lvert x-y\rvert}{1+\lvert x-y\rvert} \\
+                                               & \leq \frac{\lvert x-y\rvert}{1}               \\
+                                               & = \lvert x-y\rvert                            \\
+                                               & = \rho_2(x, y)                                \\
+                                               & < \delta \leq \varepsilon
+                              \end{align*}
+                              On the other hand, suppose that $\rho(x,y)<\delta$. Then
+                              \begin{align*}
+                                    \rho_2(x, y) & = \lvert x-y\rvert                                                \\
+                                                 & = (1+\lvert x-y\rvert)\frac{\lvert x-y\rvert}{1+\lvert x-y\rvert} \\
+                                                 & = (1+\lvert x-y\rvert)\rho(x,y)                                   \\
+                                                 & < (1+\lvert x-y\rvert)\delta                                      \\
+                                                 & = (1+\lvert x-y\rvert)\frac{\varepsilon}{1+\lvert x-y\rvert}      \\
+                                                 & = \varepsilon
+                              \end{align*}
+                        \end{proof}
                   \item Prove that $\rho$ is not uniformly equivalent to
                         $\rho_2$.
+                        \begin{proof}
+                              Let $\varepsilon>0$ be given. Suppose there exists
+                              some $\delta(\varepsilon)$ such that
+                              $\rho(x,y)<\delta\implies\rho_2(x,y)<\varepsilon$
+                              and $\rho_2(x,y)<\delta\implies\rho(x,y)<\varepsilon$.
+                              Suppose $x\neq y$ and $\varepsilon < \lvert x-y\rvert$.
+                              Then it follows that, if $\rho(x,y)<\delta$,
+                              \begin{align*}
+                                    \rho_2(x,y) & = \lvert x-y\rvert                                                \\
+                                                & = (1+\lvert x-y\rvert)\frac{\lvert x-y\rvert}{1+\lvert x-y\rvert} \\
+                                                & = (1+\lvert x-y\rvert)\rho(x,y)                                   \\
+                                                & = \rho(x,y) + \lvert x-y\rvert\rho(x,y)                           \\
+                                                & > \rho(x,y) + \varepsilon\rho(x,y)
+                              \end{align*}
+                              Therefore, $\rho$ and $\rho_2$ are not uniformly equivalent.
+                              % TODO: This is not well fleshed out at all and probably isn't correct
+                        \end{proof}
             \end{enumerate}
 \end{enumerate}
 
