@@ -117,20 +117,27 @@
                   \item Prove that $(1+\frac{x}{n})^n\to e^x$
                         for all $x$.
                         \begin{proof}
+                              Let $\varepsilon>0$ be given, and $N>$. Then for all $n\geq N$,
                               \begin{align*}
-                                      & \left\lvert(1+\frac{x}{n})^n-e^x\right\rvert \\
-                                    = &                                              % TODO
+                                    \left\lvert(1+\frac{x}{n})^n-e^x\right\rvert & = \left\lvert\sum_{k=0}^n\binom{n}{k}\left(\frac{x}{n}\right)^{n-k} - \sum_{k=0}^n\frac{x^k}{k!}\right\rvert \\
+                                                                                 & = \left\lvert\sum_{k=0}^n\frac{n!}{k!(n-k)!}\left(\frac{x}{n}\right)^{n-k} - \frac{x^k}{k!}\right\rvert      \\
+                                                                                 & = \left\lvert\sum_{k=0}^n\frac{n!x^{(n-k)}}{k!(n-k)!n^{(n-k)}} - \frac{x^k}{k!}\right\rvert                  \\
+                                                                                 & = \left\lvert\sum_{k=0}^n\frac{n!x^nn^k}{k!(n-k)!x^kn^n} - \frac{x^k}{k!}\right\rvert                        \\
+                                                                                 & \leq \left\lvert\sum_{k=0}^n\frac{n^nx^nn^k}{k!(n-k)!x^kn^n} - \frac{x^k}{k!}\right\rvert                    \\
+                                                                                 & = \left\lvert\sum_{k=0}^n\frac{x^nn^k}{k!(n-k)!x^k} - \frac{x^k}{k!}\right\rvert                             \\
                               \end{align*}
                         \end{proof}
                   \item Prove that $(1+\frac{x}{n})^n\to e^x$
                         uniformly on any finite interval $[a,b]$.
                         \begin{proof}
                               % TODO
+                              I couldn't figure out how to finish part (a)
                         \end{proof}
                   \item Prove that the convergence is not
                         uniform on $\mathbb{R}$.
                         \begin{proof}
                               % TODO
+                              I couldn't figure out how to finish part (a)
                         \end{proof}
             \end{enumerate}
 \end{enumerate}
@@ -241,24 +248,26 @@
             numbers $\{f_n(x)\}$ is nonincreasing. Prove that $f_n\to 0$
             uniformly.
             \begin{proof}
-                  Let it be known that $\varepsilon>0$. Since $f_n\to 0$ pointwise,
+                  Let $\varepsilon>0$ be known. Since $f_n\to 0$ pointwise,
                   we know there exists some $N$ for each $x\in[a,b]$ so that for
                   all $n>N$
                   \begin{equation}
                         \lvert f_n(x)-0\rvert<\varepsilon.
                         \label{eq:5.2_15_pointwiseConvergence}
                   \end{equation}
-                  We also know that, since $f_n$ is nonincreasing at each $x_o$,
+                  We also know that, since $f_n$ is nonincreasing,
                   \begin{equation}
-                        f_{n+1}(x_o) \leq f_n(x_o).
+                        \lVert f_n\rVert_\infty \geq \lVert f_{n+k}\rVert_\infty \forall k\in\mathbb{N}
                         \label{eq:5.2_15_nonincreasing}
                   \end{equation}
-                  Using \eqref{eq:5.2_15_pointwiseConvergence} and
-                  \eqref{eq:5.2_15_nonincreasing}, we can show that
+                  Since this $\{f_n\}$ approaches 0 pointwise, we know that $\lVert f_n\rVert$ appraches 0 as well.
+                  Choose $N_C$ so that $\lVert f_{N_C}\rVert_\infty<\varepsilon$. Then, using \eqref{eq:5.2_15_pointwiseConvergence} and
+                  \eqref{eq:5.2_15_nonincreasing}, we can show that, for all $n_C>N_C$
                   \begin{align*}
-                        \lvert f_n(x)-0\rvert & = \lvert f_n(x)\rvert    \\
-                                              & \leq \lvert f_n(x)\rvert
-                  \end{align*}% TODO
+                        \lvert f_{n_C} - 0\rvert & = \lvert f_{n_C}\rvert           \\
+                                                 & \leq \lVert f_{N_C}\rVert_\infty \\
+                                                 & < \varepsilon
+                  \end{align*}
             \end{proof}
 \end{enumerate}
 
@@ -367,7 +376,7 @@
                               \[
                                     \frac{1}{2}< x \leq\frac{1}{2}
                               \]
-                              This clearly cannot be true. Contraction!
+                              This clearly cannot be true. Contradiction!
                               Thus,
                               \begin{align*}
                                     \frac{1}{2} + \frac{1}{n}< & x \leq 1 \\
@@ -380,7 +389,23 @@
                   \item Prove that $\lVert f-f_n\rVert_\infty=1$ for each $n$ so
                         that $f_n$ does not converge to $f$ in the $sup$ norm.
                         \begin{proof}
-                              % TODO
+                              \begin{align*}
+                                    \lvert f-f_n\rvert                   & = \begin{cases}
+                                          0                  & 0 \leq x \leq \frac{1}{2}                  \\
+                                          1-n(x-\frac{1}{2}) & \frac{1}{2}<x \leq \frac{1}{2}+\frac{1}{n} \\
+                                          0                  & \frac{1}{2}+\frac{1}{n} < x \leq 1
+                                    \end{cases}             \\
+                                    \therefore \lVert f-f_n\rVert_\infty & = \lVert 1-n(x-\frac{1}{2})\rVert_\infty
+                              \end{align*}
+                              For each $n$, choose $x_o=\frac{1}{2n}+\frac{1}{2}$. Then,
+                              because $x_o\leq \frac{1}{2}+\frac{1}{n}$, we can show that
+                              \begin{align*}
+                                    \lVert f-f_n\rVert_\infty & = \lVert 1-n(x_o-\frac{1}{2})\rVert_\infty                      \\
+                                                              & = \lVert 1-n(\frac{1}{2n}+\frac{1}{2}-\frac{1}{2})\rVert_\infty \\
+                                                              & = \lVert 1-n(\frac{1}{2n})\rVert_\infty                         \\
+                                                              & = \lVert 1-\frac{1}{2}\rVert_\infty                             \\
+                                                              & = \frac{1}{2}
+                              \end{align*}
                         \end{proof}
                   \item Explain how you could have predicted the result of part
                         (b) simply by using theorem 5.2.1.
@@ -390,11 +415,27 @@
                                     If $f_n\to f$ uniformly on $E$ as $n\to\infty$ then
                                     $f$ is continuous on $E$.
                         \end{description}
-                        % TODO
+                        \begin{proof}[Modus Ponens!]
+                              The antecendent of theorem 5.2.1 tells us that if $f$ is NOT
+                              continuous on $E$, then $f_n\nrightarrow f$ uniformly.
+                              $f$ is not continuous on $E$, so this is clearly the case.
+                        \end{proof}
                   \item Prove that $\lVert f-f_n\rVert_1\to 0$ as $n\to \infty$.
                         \begin{proof}
-                              Let $\varepsilon>0$ be given, and choose $N>$.
-                              Then, for all $n>N$, % TODO
+                              Let $\varepsilon>0$ be given, and choose $N>\frac{2}{\varepsilon}$.
+                              Then, for all $n>N$,
+                              \begin{align*}
+                                    \lVert f-f_n\rVert_1 & = \int_0^\frac{1}{2}0dx+\int_\frac{1}{2}^{\frac{1}{2}+\frac{1}{n}}1-n(x-\frac{1}{2})dx+\int_{\frac{1}{2}+\frac{1}{n}}^10dx                                          \\
+                                                         & = \int_\frac{1}{2}^{\frac{1}{2}+\frac{1}{n}}1-n(x-\frac{1}{2})dx                                                                                                    \\
+                                                         & = \left.\left(1+\frac{n}{2}\right)x-\frac{nx^2}{2}\right\rvert_\frac{1}{2}^{\frac{1}{2}+\frac{1}{n}}                                                                \\
+                                                         & = \left(1+\frac{n}{2}\right){(\frac{1}{2}+\frac{1}{n})}-\frac{n{(\frac{1}{2}+\frac{1}{n})}^2}{2} - \frac{1}{2}\left(1+\frac{n}{2}\right)+\frac{n(\frac{1}{2})^2}{2} \\
+                                                         & = \frac{1}{2} + \frac{1}{n} + \frac{n}{4} + \frac{1}{2} - \frac{n}{8} - \frac{1}{2} - \frac{1}{2n} - \frac{1}{2} - \frac{n}{4} + \frac{n}{8}                        \\
+                                                         & = \frac{1}{n} + \frac{1}{2n}                                                                                                                                        \\
+                                                         & \leq \frac{1}{n}+ \frac{1}{n}                                                                                                                                       \\
+                                                         & = \frac{2}{n}                                                                                                                                                       \\
+                                                         & \leq \frac{2}{N}                                                                                                                                                    \\
+                                                         & \leq \varepsilon
+                              \end{align*}
                         \end{proof}
             \end{enumerate}
             \setcounter{enumi}{6}
@@ -650,7 +691,7 @@
                               \[
                                     f_y(x,y,y') - \frac{d}{dx}f_{y'}(x,y,y')=0.
                               \]
-                              % TODO: I truly don't understand this one
+                              % TODO: I truly don't understand this one. Is part A even involved?
                         \end{proof}
                   \item Show that the functions $y(x)=C_2\cosh
                               (\frac{x-C_1}{C_2})$ satisfy the differential
@@ -721,9 +762,11 @@
                         \item $\forall(x_1,y_1),(x_2,y_2),(x_3,y_3)\in\mathbb{R}^2,\rho_{\max}((x_1,y_1),(x_3,y_3))$\\
                               \phantom{tabbing}$\leq \rho_{\max}((x_1,y_1),(x_2,y_2))+\rho_{\max}((x_2,y_2),(x_3,y_3))$
                               \begin{align*}
-                                    \rho_{\max}(x_1,y_1), (x_3, y_3)) & = \max\{\lvert x_1-x_3\rvert,\lvert y_1-y_3\rvert\} \\
-                                                                      & =                                                   \\% TODO: I never figured this one out
+                                     & \rho_{\max}((x_1,y_1),(x_3,y_3))                                       \\
+                                     & \leq \lvert(x_1,y_1)\rvert + \lvert(x_3,y_3)\rvert                     \\
+                                     & \leq \rho_{\max}((x_1,y_1),(x_2,y_2))+\rho_{\max}((x_2,y_2),(x_3,y_3))
                               \end{align*}
+
                   \end{enumerate}
             \end{proof}
             \setcounter{enumi}{9}
@@ -904,19 +947,86 @@
             with the Euclidean metric?
             \begin{enumerate}
                   \item $\{(x, y)\in\mathbb{R}^2|x^2+y^2<1 \}$.
+                        \begin{proof}[NOPE]
+                              Let $\{p_n\} = (\frac{n-1}{n}, 0)$. Because
+                              $n$ is always positive, $\frac{n-1}{n}<1$ so clearly
+                              $(\frac{n-1}{n})^2+0^2<1$ and $\{p_n\}\in\mathbb{R}^2$.
+                              However, $\lim_{n\to\infty}\frac{n-1}{n}=1$ and
+                              $(1,0)$ is not in the subset! Contraction!
+                        \end{proof}
                   \item $\{(x, y)\in\mathbb{R}^2|x\geq 1\text{ and }y\leq -2\}$.
+                        \begin{proof}
+                              Let $\{p_n\}$ be a Cauchy sequence in this subset.
+                              Then $\{p_n\}$ is Cauchy in $\mathbb{R}^2$ and
+                              therefore has a limit $p=(x,y)$ in $\mathbb{R}^2$.
+                              If $p_n=(x_n, y_n)$ then we know that $x_n\to x$
+                              and $y_n\to y$. Because all $p_n$ are in the subset,
+                              we know that $x_n\geq 1$ and $y_n\leq -2$. Therefore,
+                              $x\geq 1$ and $y\leq -2$ so the metric space is complete.
+                        \end{proof}
                   \item $\{(x, y)\in\mathbb{R}^2|y\in\mathbb{N} \}$.
+                        \begin{proof}
+                              Because $\mathbb{N}$ is discrete, its Cauchy
+                              sequences are all constant. Then for any Cauchy
+                              sequence $\{p_n\}$ in this subset with the limit
+                              $p=(x,y)$, $p_n=(x_n,y)$. Since $p_n\to p$,
+                              we know that $x_n\to x$. All $x\in\mathbb{R}$
+                              are a part of this subset, so we know that the
+                              metric space is complete.
+                        \end{proof}
                   \item $\{(x, y)\in\mathbb{R}^2|f(x,y)=0 \}$, where $f$ is
                         continuous on $\mathbb{R}^2$.
+                        \begin{proof}
+                              I'm convinced that this is true, but I do not know
+                              how to prove it. Picture a 3d function that intersects
+                              with the plane $z=0$ all over the place. Since $f$ is
+                              continuous there aren't any discontinuities on $z=0$,
+                              which means that any subsequence will be able to find
+                              a home.
+                              % TODO: actually prove this
+                        \end{proof}
             \end{enumerate}
       \item Which of the following subsets of $C[a,b]$ are complete metric
             spaces with the metric $\rho_\infty$?
             \begin{enumerate}
                   \item $\{f\in C[a,b]|f(x)>0\text{ for }x\in [a,b]\}$.
+                        \begin{proof}[NOPE]
+                              Let $f_n(x)=\frac{1}{n}$. It is clear that for all
+                              $n\in\mathbb{N}$, $f_n(x)>0$ However,
+                              $\lim_{n\to\infty}f_n(x)=f(x)=0$. This is not in
+                              the subset. Contraction!
+                        \end{proof}
                   \item $\{f\in C[a,b]|f(a)=0\}$.
+                        \begin{proof}
+                              Let $\{f_n\}$ be a Cauchy sequence in this subset.
+                              Then, since $\{f_n\}$ is on $C[a,b]$ and $C[a,b]$
+                              is complete, there is a continuous function $f$
+                              on $[a,b]$ such that $f_n\to f$ uniformly. For all
+                              $n$, $f_n(a)=0$, and this implies that
+                              $f(a)=\lim_{n\to\infty}f_n(a)=0$. Therefore, this
+                              subset is complete.
+                        \end{proof}
                   \item $\{f\in C[a,b]|f(x)=0\text{ for }a<c\leq x\leq d<b\}$.
+                        \begin{proof}
+                              Let $\{f_n\}$ be a Cauchy sequence in this subset.
+                              Then, since $\{f_n\}$ is on $C[a,b]$ and $C[a,b]$
+                              is complete, there is a continuous function $f$
+                              on $[a,b]$ such that $f_n\to f$ uniformly. We also
+                              know that for all $x\in[c,d]$, $f(x)=0$. Since
+                              $C[a,b]$ is complete in $\rho_\infty$, and all
+                              $f_n$ in the sequence are equivalent to 0 on
+                              $[c,d]$, it is clear that $f$ is also in this
+                              subset.
+                        \end{proof}
                   \item $\{f\in C[a,b]|\lvert f(x)\rvert\leq 2+f(x)^2$
                         for $x\in[a,b]\}$.
+                        \begin{proof}
+                              Let $\{f_n\}$ be a Cauchy sequence in this subset.
+                              Then, since $\{f_n\}$ is on $C[a,b]$ and $C[a,b]$
+                              is complete, there is a continuous function $f$
+                              on $[a,b]$ such that $f_n\to f$ uniformly.
+                              % TODO: I don't know how to do this one at all
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{9}
       \item \begin{enumerate}
@@ -924,10 +1034,30 @@
                         equivalent metrics on $\mathcal{M}$, then
                         $(\mathcal{M}, \rho)$ is complete only if
                         $(\mathcal{M}, \sigma)$ is complete.
+                        \begin{proof}
+                              Suppose $\sigma$ is not a complete metric in
+                              $\mathcal{M}$. Then there exists some
+                              $\{f_n\}\in(\mathcal{M}, \sigma)$ so that
+                              $\lim_{n\to\infty}(f_n)\notin(\mathcal{M}, \sigma)$
+                              Because $\sigma$ and $\rho$ are uniformly equivalent,
+                              $\lim_{n\to\infty}(f_n)\notin(\mathcal{M}, \rho)$.
+                              This cannot be the case, since $(\mathcal{M}, \sigma)$
+                              is complete. Therefore, $(\mathcal{M}, \rho)$ is complete only if
+                              $(\mathcal{M}, \sigma)$ is complete.
+                              %TODO: I don't think this is correct
+                        \end{proof}
                   \item Suppose that $\rho$ and $\sigma$ are equivalent metrics
                         on $\mathcal{M}$. Show by example that it is possible
                         that $(\mathcal{M}, \rho)$ is complete but
                         $(\mathcal{M}, \sigma)$ is not complete.
+                        \begin{proof}
+                              Let $\mathcal{M}=\mathbb{R}^2$, and
+                              \begin{align*}
+                                    \rho(x,y)   & \equiv \lvert x-y\rvert                             \\
+                                    \sigma(x,y) & \equiv \frac{\lvert x-y\rvert}{1+\lvert x-y\rvert}. \\
+                              \end{align*}
+                              % TODO: This is probably a bad example, I don't know how it would work
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{11}
       \item Let $\mathcal{M}$ be the set of continuous functions on $\mathbb{R}$
@@ -936,11 +1066,54 @@
             \begin{enumerate}
                   \item Show that $\mathcal{M}$ is a metric space in the sup
                         norm.
+                        \begin{proof}
+                              Because all functions in $\mathcal{M}$ vanish
+                              outside of a finite interval $(a,b)$, we can model
+                              each function in $\mathcal{M}$ as
+                              \[
+                                    f(x) = \begin{cases}
+                                          0    & \textrm{if } x\leq a \\
+                                          f(x) & \textrm{if } a<x<b   \\
+                                          0    & \textrm{if } b\leq x
+                                    \end{cases}.
+                              \]
+                              We can imagine two cases from here. First imagine
+                              that for all $x$, $f(x)\leq 0$. Then
+                              $\lVert f(x)\rVert_\infty=0$ because the function
+                              vanishes outside of the finite interval. Otherwise,
+                              $\lVert f(x)\rVert_\infty=\lVert f(x)\rVert_{(a,b)}$.
+                        \end{proof}
                   \item Show that $\mathcal{M}$ is not complete.
+                        \begin{proof}
+                              Let
+                              \begin{align*}
+                                    f_n(x)                  & = \begin{cases}
+                                          0                    & \textrm{if } x\leq -1 \\
+                                          1-x^{\lvert n\rvert} & \textrm{if } -1<x<1   \\
+                                          0                    & \textrm{if } 1\leq x
+                                    \end{cases}.
+                                    \intertext{Then}
+                                    \lim_{n\to\infty}f_n(x) & = \begin{cases}
+                                          0 & \textrm{if } x\leq -1 \\
+                                          1 & \textrm{if } -1<x<1   \\
+                                          0 & \textrm{if } 1\leq x
+                                    \end{cases},
+                              \end{align*}
+                              which is not continuous.
+                        \end{proof}
                   \item Show that $C_o(\mathbb{R})$, the continuous functions
                         which go to zero at $\infty$, is complete in the sup
                         norm.
+                        \begin{proof}[Wait...]
+                              But doesn't $2^{-x}$ vanish as $x\to \infty$? That
+                              function is not in the sup norm as far as I understand.
+                              % TODO: figure this out
+                        \end{proof}
                   \item Prove that $\mathcal{M}$ is dense in $C_o(\mathbb{R})$.
+                        \begin{proof}
+                              I can't do this without (c), which I do not know how to do.
+                              % TODO: Learn about dense functions
+                        \end{proof}
             \end{enumerate}
 \end{enumerate}
 
@@ -959,6 +1132,23 @@
                         $\lVert\cdot\rVert_2$  are equivalent, then $V$ is
                         complete in $\lVert\cdot\rVert_1$ if and only if $V$ is
                         complete in $\lVert\cdot\rVert_2$.
+                        \begin{proof}
+                              Let us assume on the contrary that $V$ is complete
+                              in $\lVert\cdot\rVert_1$ but it is not complete in
+                              $\lVert\cdot\rVert_2$. Then there exists some Cauchy
+                              sequence $\{a_n\}\in(V,\lVert\cdot\rVert_1)$ such that
+                              $\lim_{n\to\infty}\{a_n\}\in(V,\lVert\cdot\rVert_1)$.
+                              Let $a$ be $\lim_{n\to\infty}\{a_n\}$.
+                              Because $\lVert\cdot\rVert_1$ is equivalent to
+                              $\lVert\cdot\rVert_2$, we know that there exists
+                              positive constants $c$ and $d$ such that
+                              $c\lVert a\rVert_1\leq\lVert a\rVert_2\leq d\lVert a\rVert_1$.
+                              Since $c\lVert a\rVert_1$ and $d\lVert a\rVert_1$
+                              are both in $V$, it is clear that $\lVert a\rVert_2$
+                              is also in $V$. This is a contradiction! Therefore,
+                              $\lVert\cdot\rVert_2$ is complete implies that
+                              $\lVert\cdot\rVert_1$ is complete.
+                        \end{proof}
                   \item Prove that the $\lVert\cdot\rVert_1$ norm and the
                         Euclidean norm $\lVert\cdot\rVert_2$ are equivalent on
                         $\mathbb{R}^n$ by showing that
@@ -967,8 +1157,44 @@
                               \leq \lVert x\rVert_1^2
                               \leq n\lVert x\rVert_2^2.
                         \]
+                        \begin{proof}
+                              Let us represent members of $\mathbb{R}^n$ as
+                              vectors of the following form:
+                              \[
+                                    (x_0, x_1, x_2, \ldots, x_{(n-3)}, x_{(n-2)}, x_{(n-1)}).
+                              \]
+                              Then we define
+                              \begin{align*}
+                                    \lVert\cdot\rVert_1 & \equiv \sum_{i=0}^{n-1}\lvert x_i\rvert \\
+                                    \lVert\cdot\rVert_2 & \equiv \sqrt{\sum_{i=0}^{n-1}(x_i)^2}.
+                              \end{align*}
+                              The norms are equivalent if there exists some positive
+                              scalar $c$ and $d$ such that
+                              \[
+                                    c\lVert\cdot\rVert_2 \leq \lVert\cdot\rVert_1 \leq d\lVert\cdot\rVert_2.
+                              \]
+                              Let $c=1$ and $d=\sqrt{n}$. Then it follows that
+                              \[
+                                    \lVert\cdot\rVert_2^2 \leq \lVert\cdot\rVert_1^2 \leq n\lVert\cdot\rVert_2^2.
+                              \]
+                              To show that this is true, let us select some arbitrary vector
+                              $x\in\mathbb{R}^n$. Then
+                              \begin{align*}
+                                    \lVert x\rVert_2           & = \sqrt{\sum_{i=0}^{n-1}(x_i)^2}                     \\
+                                    \lVert x\rVert_2^2         & = \sum_{i=0}^{n-1}(x_i)^2                            \\
+                                                               & \leq \left(\sum_{i=0}^{n-1}\lvert x_i\rvert\right)^2 \\
+                                                               & = \lVert x\rVert_1^2                                 \\
+                                                               & \leq n\sqrt{\sum_{i=0}^{n-1}(x_i)^2}                 \\
+                                                               & = n\lVert x\rVert_2^2                                \\
+                                    \\
+                                    \therefore\lVert x\rVert_2 & \leq \lVert x\rVert_1\leq \lVert x\rVert_2
+                              \end{align*}
+                        \end{proof}
                   \item Prove that the sup norm and the $L_1$ norm are not
                         equivalent on $C[a,b]$.
+                        \begin{proof}
+                              % TODO: this proof
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{9}
       \item Let $\{x_i\}_{i=1}^N$ and $\{y_i\}_{i=1}^N$ be real numbers and not
@@ -978,17 +1204,17 @@
             \]
             Explain why $p(\lambda)$ has either two complex roots or a double
             real root. Use this fact to prove the \textbf{Cauchy-Schwartz
-                  Inequality}
+                  Inequality}.
             \begin{equation}
                   \left\lvert\sum_{i=1}^Nx_iy_i\right\rvert \leq
                   \left(\sum_{i=1}^Nx_i^2\right)^\frac{1}{2}
                   \left(\sum_{i=1}^Ny_i^2\right)^\frac{1}{2}.
             \end{equation}
             Under what circumstances does one get equality?
-      \item Let $c_o$ denote the set of sequences, ${a_j}$, of real numbers such
+      \item Let $c_o$ denote the set of sequences, $\{a_j\}$, of real numbers such
             that $a_j\to 0$ as $j\to \infty$. Define
             \[
-                  \lVert\{a_j\}_\infty\rVert\equiv\sup_j\lvert a_j\rvert.
+                  \lVert\{a_j\}\rVert_\infty\equiv\sup_j\lvert a_j\rvert.
             \]
             \begin{enumerate}
                   \item Explain why $c_o$ is a normed linear space with the norm
@@ -1004,18 +1230,97 @@
                   + \lVert f''\rVert_\infty$.
             \begin{enumerate}
                   \item Explain why $C^{(2)}[a,b]$ is a vector space.
+                        \begin{enumerate}
+                              \item Adding two twice continuously differentiable
+                                    functions results in another twice continuously
+                                    differentiable function.
+                              \item Function addition is clearly commutative.
+                              \item Addition is also associative.
+                              \item Let $f(x)=0$ be the 0 vector in $C^{(2)}[a,b]$.
+                              \item Let $f'(x)$ = $-f(x)$. Then $f'(x)+f(x)=$ the zero vector.
+                              \item A twice differentiable function multiplied by a scalar is still twice differentiable.
+                              \item $(\alpha+\beta)f(x) = \alpha f(x) + \beta f(x)$.
+                              \item $\alpha(\beta \lVert f\rVert) = (\alpha\beta) \lVert f\rVert$.
+                              \item $\alpha (f(x)+g(x)) = \alpha f(x) + \alpha g(x)$.
+                        \end{enumerate}
                   \item Prove that $\lVert\cdot\rVert$ is a norm in
                         $C^{(2)}[a,b]$.
+                        \begin{enumerate}
+                              \item By definition, $\lVert\cdot\rVert_\infty\geq 0$.
+                                    Adding three nonnegative numbers results in another
+                                    nonnegative number.
+                              \item \begin{align*}
+                                          \lVert \alpha f\rVert & = \lVert\alpha f\rVert_\infty + \lVert\alpha f'\rVert_\infty + \lVert\alpha f''\rVert_\infty                                     \\
+                                                                & = \lvert\alpha\rvert\lVert f\rVert_\infty + \lvert\alpha\rvert\lVert f'\rVert_\infty + \lvert\alpha\rvert\lVert f''\rVert_\infty \\
+                                                                & = \lvert\alpha\rvert\lVert f\rVert
+                                    \end{align*}
+                              \item \begin{align*}
+                                          \lVert f+g\rVert & = \lVert f+g\rVert_\infty + \lVert f'+g'\rVert_\infty + \lVert f''+g''\rVert_\infty                                                                   \\
+                                                           & \leq \lVert f\rVert_\infty+\lVert g\rVert_\infty + \lVert f'\rVert_\infty+\lVert g'\rVert_\infty + \lVert f''\rVert_\infty+\lVert g''\rVert_\infty    \\
+                                                           & = \lVert f\rVert_\infty + \lVert f'\rVert_\infty + \lVert f''\rVert_\infty + \lVert g\rVert_\infty + \lVert g'\rVert_\infty + \lVert g''\rVert_\infty \\
+                                                           & = \lVert f\rVert + \lVert g\rVert
+                                    \end{align*}
+                        \end{enumerate}
                   \item Prove that $C^{(2)}[a,b]$ is complete in the norm
                         $\lVert\cdot\rVert$.
+                        \begin{proof}
+                              Let $\{f_n\}$ be a cauchy sequence in $C^{(2)}[a,b]$. Then,
+                              given $\varepsilon>0$, there exists some $N$ so that
+                              for all $m,n>N$,
+                              \[
+                                    \lVert f_m-f_n\rVert < \varepsilon.
+                              \]
+                              We know that
+                              \begin{align*}
+                                    \lVert f_m-f_n\rVert & = \lVert f_m - f_n\rVert_\infty + \lVert f_m' - f_n'\rVert_\infty + \lVert f_m'' - f_n''\rVert_\infty                                                  \\
+                                                         & \geq \lVert f_m\rVert_\infty - \lVert f_n\rVert_\infty + f_m'\rVert_\infty - \lVert f_n'\rVert_\infty + f_m''\rVert_\infty - \lVert f_n''\rVert_\infty \\
+                                                         & = \lVert f_m\rVert - \lVert f_n\rVert
+                              \end{align*}
+                              So it follows that
+                              \[
+                                    \lVert f_m\rVert - \lVert f_n\rVert \leq \lVert f_m-f_n\rVert < \varepsilon
+                                    \implies \lVert f_m\rVert - \lVert f_n\rVert< \varepsilon.
+                              \]
+                              Thus, $\{f_n\}$ converges to a real number.
+                        \end{proof}
                   \item Prove that $\frac{d^2}{dx^2}$ is a linear
                         transformation from $C^{(2)}[a,b]$ to $C[a,b]$.
+                        \begin{proof}
+                              Let $f, g\in C^{(2)}[a,b]$, and $\alpha, \beta\in\mathbb{R}$. Then
+                              \begin{align*}
+                                    \frac{d^2}{dx^2}(\alpha f+\beta g) & = \frac{d^2}{dx^2}(\alpha f) + \frac{d^2}{dx^2}(\beta g) \\
+                                                                       & = \alpha\frac{d^2}{dx^2}(f) + \beta\frac{d^2}{dx^2}(g).  \\
+                                                                       & = \alpha f'' + \beta g''
+                              \end{align*}
+                              Since $f$ and $g$ are both members of $C^{(2)}[a,b]$, $f''$ and
+                              $g''$ must be continuous functions within the same range. Therefore,
+                              $f'',g''\in C[a,b]$ and thus $\alpha f'' + \beta g''\in C[a,b]$.
+                              This tells us that $\frac{d^2}{dx^2}$ is a linear transformation.
+                        \end{proof}
                   \item Prove that $\{f\in C^{(2)}[a,b]|f''(x)\equiv 0\}$
                         is a vector space. It is called the \textbf{kernel} of
                         $\frac{d^2}{dx^2}$.
+                        \begin{enumerate}
+                              \item Let $f$ and $g$ be twice continuously differentiable functions
+                                    Such that $f''=g''=0$. Then $(f+g)''=0$.
+                              \item Function addition is commutative.
+                              \item Function addition is also associative.
+                              \item Let $f(x)=0$ be the 0 vector in $C^{(2)}[a,b]$.
+                              \item Let $f'(x)$ = $-f(x)$. Then $f'(x)+f(x)=$ the zero vector.
+                              \item A twice differentiable function multiplied by a scalar is still twice differentiable,
+                                    and since the second derivative is 0, multiplying by a scalar will not change it.
+                              \item $(\alpha+\beta)f(x) = \alpha f(x) + \beta f(x)$.
+                              \item $\alpha(\beta \lVert f\rVert) = (\alpha\beta) \lVert f\rVert$.
+                              \item $\alpha (f(x)+g(x)) = \alpha f(x) + \alpha g(x)$.
+                        \end{enumerate}
                   \item Identify the functions in the kernel.
+                        \medbreak
+                        All linear functions are in the kernel.
                   \item Is the linear transformation $\frac{d^2}{dx^2}$
                         one-to-one?
+                        \medbreak
+                        No, derivatives are lossy. In fact, all functions in the kernel map to
+                        the same value undr this linear transformation.
             \end{enumerate}
 \end{enumerate}
 
@@ -1027,21 +1332,48 @@
             \begin{enumerate}
                   \item Show that for each $p$,
                         $\lVert f\rVert_p\leq\lVert f\rVert_\infty$.
+                        \begin{align*}
+                              \lVert f\rVert_p & = \sqrt[p]{\int_0^1f^pdx}                     \\
+                                               & \leq \sqrt[p]{\int_0^1\sup(f)^pdx}            \\
+                                               & = \sqrt[p]{\left. x\sup(f)^p\right\rvert_0^1} \\
+                                               & = \sqrt[p]{(1-0)\sup(f)^p}                    \\
+                                               & = \sqrt[p]{\sup(f)^p}                         \\
+                                               & = \sup(f)                                     \\
+                                               & = \lVert f\rVert_\infty
+                        \end{align*}
                   \item Explain why $\lvert f(x)\rvert$ is continuous on
                         $[0,1]$. Let $x_o$ be the point where
                         $\lvert f(x)\rvert$ achieves its maximum. Explain why
                         $\lvert f(x_o)\rvert=\lVert f\rVert_\infty$.
+                        \medbreak
+                        If a function is continuous on $[0,1]$ then its absolute
+                        value is also continuous. By definition, the maximum value
+                        of the absolute value of the sup norm is the function.
                   \item Assume that $x_o$ is not one of the endpoints and let
                         $\varepsilon>0$ be given. Explain why you can choose
                         a $\mu>0$ so that
-                        $\lvert f(x)\rvert=\lVert f\rVert - \varepsilon$ for all
+                        $\lvert f(x)\rvert\geq\lVert f\rVert_\infty - \varepsilon$ for all
                         $x\in[x_o-\mu,x_o+\mu]$.
+                        \medbreak
+                        Because $f$ is contained in a finite interval,
+                        $\lVert f\rVert_\infty=f(x_o)$. $f$ is also continuous,
+                        so there must exist some $\mu$ such that
+                        $x_o\pm\mu>\lVert f\rVert_\infty \geq f(x_o)-\varepsilon$.
                   \item Prove that $\int_0^1\lvert f(x)\rvert^pdx \geq
                               2\mu(\lVert f\rVert_\infty-\varepsilon)^p$ for
                         all $p$.
+                        \begin{proof}
+                              \begin{align*}
+                                    \int_0^1\lvert f(x)\rvert^pdx & =
+                                    \int_0^1\lvert f(x)\rvert^pdx & \geq 2\mu(\lVert f\rVert_\infty-\varepsilon)^p         \\
+                                    \lVert f\rVert_p^p            & \geq 2\mu(\lVert f\rVert_\infty-\varepsilon)^p         \\
+                                    \lVert f\rVert_p              & \geq \sqrt[p]{2\mu}(\lVert f\rVert_\infty-\varepsilon) \\
+                              \end{align*}
+                              % TODO: Sarosh said it was easy but I can't figure it out
+                        \end{proof}
                   \item Show that for $p$ large enough, $\lVert f\rVert_\infty
                               \geq \lVert f\rVert_p \geq \lVert f\rVert_\infty
-                              -2\varepsilon$ and conclude that $lim_{p\to\infty}
+                              -2\varepsilon$ and conclude that $\lim_{p\to\infty}
                               \lVert f\rVert_p = \lVert f\rVert_\infty$.
             \end{enumerate}
             \setcounter{enumi}{3}
@@ -1053,6 +1385,9 @@
                   \item Explain why $C_1<0$ and why $y'(x)$ must blow up as
                         $x\searrow  0$. What does it mean geometrically that
                         $y'(x)$ blows up?
+                        \medbreak
+                        Geometrically, $y'(x)$ blowing up means that the
+                        rate of change increases drastically.
                   \item Prove that $\frac{dx}{dy}=\sqrt{\frac{y}{C_1-y}}$.
                   \item We introduce a new variable $\theta$ as a parameter and
                         try to find $x$ and $y$ in terms of $\theta$. Let $y$

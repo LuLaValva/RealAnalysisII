@@ -5,3 +5,4 @@
 **/*.synctex.gz
 **/*.pdf
 ltex*
+.DS_Store
