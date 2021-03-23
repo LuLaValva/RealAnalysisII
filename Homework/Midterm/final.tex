@@ -1,0 +1,375 @@
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{titling}
+\usepackage{scrextend}
+
+\title{Real Analysis II - Homework II}
+\author{Lucas LaValva}
+\date{\today}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\theauthor}
+\rhead{\thetitle}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{5}
+
+\section{Series of Functions}
+
+\subsection{Lim sup and Lim inf}
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Let $a_n=1$ if $n=2^k$ for some positive integer $k$,
+          and $a_n=\frac{1}{n!}$ otherwise.
+          \begin{enumerate}
+              \item Find $\lim\sup a_n$ and $\lim\inf a_n$.
+              \item Find $\lim\sup\frac{\lvert a_{n+1}\rvert}{\lvert a_n\rvert}$.
+              \item Find $\lim\sup\lvert a_n\rvert^\frac{1}{n}$.
+          \end{enumerate}
+          \setcounter{enumi}{4}
+    \item Let $\{a_n\}$ be a sequence of real numbers and suppose
+          that $\lim\sup a_n$ is finite. Let $\{c_n\}$ be another
+          sequence and suppose that $c_n\to c$.
+          \begin{enumerate}
+              \item Prove that, if $c>0$, then
+                    \begin{equation}
+                        \lim\sup c_na_n = c\lim\sup a_n.
+                        \label{eq:6.1_5_given}
+                    \end{equation}
+              \item Find a counterexample to \eqref{eq:6.1_5_given}
+                    with $c<0$.
+          \end{enumerate}
+          \setcounter{enumi}{8}
+    \item Let $\{a_n\}$ be a bounded sequence of real numbers and
+          let $P$ be the set of limit points of $\{a_n\}$. Limit
+          points are defined in Section 2.6. Prove that
+          $\lim\sup a_n=\sup P$ and $\lim\inf a_n=\inf P$.
+\end{enumerate}
+
+\subsection{Series of Real Constants}
+\begin{enumerate}
+    \item Determine whether the following series converge
+          or diverge:
+          \begin{enumerate}
+              \item $\sum\frac{3^j}{j!}$
+              \item $\sum\frac{\sqrt{n}}{1+n^2}$
+              \item $\sum\frac{2^j}{j^2}$
+              \item $\sum\frac{j^2}{j!}$
+              \item $\sum(\sqrt{j+1}-\sqrt{j})$
+              \item $\sum\frac{\sqrt{j+1}-\sqrt{j}}{j}$
+              \item $\sum e^{-j+\sin j}$
+              \item $\sum\frac{j+\cos j}{j}$
+          \end{enumerate}
+          \setcounter{enumi}{3}
+    \item Consider the series $\sum_{j=1}^\infty\frac{1}{j(j+1)}$.
+          \begin{enumerate}
+              \item Prove that the series converges by the
+                    comparison test
+              \item What information does the ratio test give?
+              \item Use the formula $\frac{1}{j(j+1)}=\frac{1}{j}-\frac{1}{j+1}$
+                    to compute the partial sums. Show explicitly that
+                    the partial sums converge.
+          \end{enumerate}
+          \setcounter{enumi}{12}
+    \item Prove that if $a_j\geq 0$ for all $j$ and $\sum a_j$
+          converges, then $\sum a_j^2$ converges.
+    \item Suppose that $a_j\geq 0$ and that $\sum a_j$ converges.
+          \begin{enumerate}
+              \item Show by example that it is not necessarily true that
+                    $\sum\sqrt{a_j}$ converges.
+              \item Show that $\sum\frac{\sqrt{a_j}}{j}$ converges.
+          \end{enumerate}
+\end{enumerate}
+
+\subsection{The Weierstrass M-test}
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item \begin{enumerate}
+              \item Prove that $\sum_{j=0}^\infty x^j$ is differentiable
+                    on $(0,1)$ and
+                    \[
+                        \frac{d}{dx}\sum_{j=0}^\infty x_j= \sum_{j=0}^\infty(j+1)x_j.
+                    \]
+              \item Use the fact that $\sum_{j=0}^\infty x^j=\frac{1}{1+x}$ on
+                    $(-1,1)$ to find a formula for $\sum_{j=0}^\infty(j+1)x^j$.
+              \item Use this to calculate $\sum_{j=0}^\infty\frac{j+1}{2^j}$ exactly.
+          \end{enumerate}
+          \setcounter{enumi}{4}
+    \item \begin{enumerate}
+              \item Show that the series
+                    \[
+                        f(x)\equiv x+\sum_{j=1}^\infty x(1-x)^j
+                    \]
+                    converges for every $x$ in $[0,1]$.
+              \item What is $f(x)$?
+              \item Is the convergence uniform on $[0,1]$?
+          \end{enumerate}
+          \setcounter{enumi}{6}
+    \item Let $f(x)$ be defined by
+          \[
+              f(x)\equiv \sum_{j=1}^\infty\frac{1}{x^2+j^2}.
+          \]
+          \begin{enumerate}
+              \item Prove that $f$ is a well-defined, continuous function
+                    on the whole real line.
+              \item Prove that $f$ is continuously differentiable and find a
+                    series of representations for $f'$.
+          \end{enumerate}
+          \setcounter{enumi}{10}
+    \item \begin{enumerate}
+              \item Show that the series
+                    \[
+                        f(x)\equiv \sum \frac{1}{j2^j}\sin jx
+                    \]
+                    converges uniformly on $[0,2\pi]$.
+              \item Prove that $f$ is uniformly continuous on $[0,2\pi]$.
+              \item Let $\varepsilon=10^{-3}$. Find a $\delta>0$ so that
+                    $\lvert x-y\rvert\leq \delta$ implies that
+                    $\lvert f(x)-f(y)\rvert\leq \varepsilon$.
+          \end{enumerate}
+\end{enumerate}
+
+\subsection{Power Series}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Given the following conditions on the coefficients $\{a_j\}$, what
+          can you say about the radius of convergence of $\sum a_jx^j$?
+          \begin{enumerate}
+              \item $0<m_1\leq a_j\leq m_2$, for some constants $m_1$ and $m_2$.
+              \item $2^j\leq a_j\leq 3^j$.
+              \item $j^2\leq a_j\leq j^3$.
+          \end{enumerate}
+          \setcounter{enumi}{5}
+    \item Using the power series, prove that
+          $\frac{\tan x-x}{x^2}\to 0$ as $x\to 0$.
+          \setcounter{enumi}{10}
+    \item Find the radius of convergence of the series
+          $\sum_{j=0}^\infty(j+1)(j+2)x^j$. Find the function to which
+          the series converges.
+\end{enumerate}
+
+\subsection*{Projects (Chapter 6)}
+
+\begin{enumerate}
+    \item The purpose of this project is to develop a theory of
+          \textbf{alternating series}. A series is called an alternating
+          series if the signs of the terms alternate. For example,
+          \[
+              1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}
+              -\frac{1}{6}+\frac{1}{7}-....
+          \]
+          is the alternating harmonic series. If the first term is positive,
+          we can write the alternating series as $\sum_{j=0}^\infty(-1)^jc_j$,
+          where $c_j\geq 0$ for all $j$. We will suppose that the sequence
+          $\{c_j\}$ is non-increasing; that is, $c_j\geq c{j+1}$ for all $j$.
+          \begin{enumerate}
+              \item Let $S_n=\sum_{j=0}^n(-1)^jc_j$. Prove that for each $n\geq 2$,
+                    the number $S_n$ lies between $S_{n-1}$ and $S_{n-2}$.
+              \item  Use the Bolzano-Weierstrass theorem to show that a subsequence
+                    $S_{n_k}$ converges.
+              \item Suppose, in addition, that $c_j\to 0$ as $j\to\infty$. Prove that
+                    the whole sequence $\{S_n\}$ converges. This is known as the
+                    \textbf{Alternating Series Theorem}.
+              \item Does the alternating harmonic series converge? Does it converge
+                    absolutely?
+              \item Let $S=\lim_{n\to\infty}S_n$. Prove that
+                    \[
+                        \lvert S-S_n\rvert \leq c_{n+1}.
+                    \]
+                    Note that this gives us a very easy way to estimate how close a
+                    partial sum is to the sum of an alternating series. How many terms
+                    of the alternating geometric series do we have to take to be within
+                    $10^{-4}$ of the limit?
+              \item Prove that for each $x$ we can choose a $J$ so that the Maclaurin
+                    series for $\sin x$ and $\cos x$ satisfy the hypothesis for the
+                    Alternating Series Theorem for $j\geq J$. Use the alternating series
+                    remainder to estimate how close $1-\frac{x^2}{2!}+\frac{x^4}{4!}$ is
+                    to $\cos x$ on the interval $[-1,1]$. Compare your estimate to one
+                    you get by using Taylor's theorem.
+          \end{enumerate}
+\end{enumerate}
+
+
+\setcounter{section}{8}
+\section{Fourier Series}
+
+\subsection{The Heat Equation}
+
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item Let $f(x)=x(L-x)$, as in Example 1, and suppose, for simplicity, that
+          $L=\pi$ and $\kappa=1$. Let $S_n\equiv \sum_{j=1}^nb_ne^{-\lambda_nt}\sin nx$,
+          where the $b_n$ are the same as those computed in Example 1.
+          \begin{enumerate}
+              \item Generate the graphs of $f$, $S_1$, $S_3$, and $S_5$ on the interval
+                    $[0,\pi]$ when $t=0$. Does it look as if the series for $u(0,x)$ is
+                    converging to $f$?
+              \item Find an upper bound on the error we make if we replace $u$ by $S_5$.
+              \item Compare the graphs of $S_5$ for $t=0,.5,1,2,$ and $5$. Is this the
+                    way you would expect $u(t,x)$ to behave?
+          \end{enumerate}
+    \item Let $L=\pi$ and $\kappa=1$ and define $f(x)=x$ on the interval $[0,\pi]$.
+          \begin{enumerate}
+              \item Compute the coefficients $b_n$.
+              \item Show by explicit differentiation that thte function $u$ defined by
+                    (10) satisfies the heat equation for $t>0$ and explain why the
+                    boundary conditions (6) hold for all $t\geq 0$.
+              \item Explain why the series for $u$ at $t=0$ cannot converge to $f$ for
+                    \textit{all} $x\in [0,\pi]$.
+          \end{enumerate}
+          \setcounter{enumi}{6}
+    \item Consider the heat flow ina  bar where we do not prescribe the temperature
+          at the ends but instead assume that the ends are insulated.
+          \begin{enumerate}
+              \item Explain why the right boundary conditions are
+                    \begin{equation}
+                        u_x(t,0) = 0 = u_x(t,L).
+                        \label{eq:9.1_7_given}
+                    \end{equation}
+              \item Use the methods of the section to derive the formal solution
+                    \[
+                        u(t,x)=\sum_{n=0}^\infty a_ne^{-\lambda_n\kappa t}\cos\frac{n\pi x}{L},
+                    \]
+                    where $a_n=\frac{2}{L}\int_0^L f(x)\cos\frac{n\pi x}{L}dx$ and
+                    $\lambda_n=(\frac{n\pi}{L})^2$, if $n>0$, and
+                    $a_0=\frac{1}{L}\int_0^L f(x)dx$.
+              \item Explain why the same arguments as in Theorem 9.1.1 show that $u$
+                    is infinitely differentiable in $x$ and $t$ for $t>0$ and $u$ satisfies
+                    the heat equation and the boundary conditions \eqref{eq:9.1_7_given}.
+              \item By using the partial differential equation, prove that
+                    $\int_0^Lu(t,x)dx$ is independent of $t$. Why is that reasonable?
+              \item What happens to the solution as $t\to\infty$?
+          \end{enumerate}
+    \item Suppose that the ends of the bar are kept at temperature zero and that
+          $\beta cu(t,x)$ units of heat are added to the bar per gram per unit time
+          by some internal chemical reaction where $\beta$ is constant. Show that $u$
+          should satisfy the partial differential equation
+          \begin{equation}
+              u_t(t,x)-\kappa u_{xx}(t,x)-\beta u(t,x) = 0.
+              \label{eq:9.1_8_given}
+          \end{equation}
+          Using the methods of the section, write down a formal solution to
+          \eqref{eq:9.1_8_given} which satisfies the boundary condition (6) and the
+          initial condition (5). How does the behavior of the solution as $t\to\infty$
+          depend on $\beta$?
+\end{enumerate}
+
+\subsection{Definitions and Examples}
+
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item Assume that the Fourier series for $f(x)=(\pi-\lvert x\rvert)^2$,
+          which we computed in Example 1, converges to $f(x)$ for each $x$ in
+          $[-\pi,\pi]$. Prove that
+          \[
+              \sum_{n=1}^\infty\frac{1}{n^2}=\frac{\pi^2}{6}.
+          \]
+          \setcounter{enumi}{7}
+    \item Show that the Fourier series of the function $f(x)=\lvert x\rvert$ on
+          the interval $[-\pi,\pi]$ is
+          \[
+              f(x) \sim \frac{\pi}{2}-\frac{4}{\pi}
+              \sum_{n=1}^\infty\frac{1}{(2n-1)^2}\cos(2n-1)x.
+          \]
+          \setcounter{enumi}{9}
+    \item Suppose that the Fourier coefficients of a piecewise continuous function
+          $f$ satisfy $\sum m^k\lvert a_m\rvert<\infty$ and
+          $\sum m^k\lvert b_m\rvert<\infty$ for some fixed positive integer $k$
+          and that the Fourier series converges to $f(x)$ for all $x$. Prove that
+          $f$ is $k$ times continuously differentiable.
+\end{enumerate}
+
+\subsection{Pointwise Convergence}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Let $f$ be the $2\pi$ periodic extension of the function
+          \[
+              f(x) = \begin{cases}
+                  2 + 3x & -\pi < x < 0   \\
+                  x^2    & 0 \leq x < \pi \\
+                  1      & x = \pi
+              \end{cases}
+          \]
+          \begin{enumerate}
+              \item For each $x\in\mathbb{R}$, find the right-hand and
+                    left-hand limits of the difference quotient of $f$.
+              \item For each $x\in\mathbb{R}$, to what number does the
+                    Fourier series of $f$ converge?
+          \end{enumerate}
+          \setcounter{enumi}{4}
+    \item \begin{enumerate}
+              \item Compute the Fourier coefficients of the periodic extension
+                    of the function $f(x)=x$ on $[-\pi,\pi)$.
+              \item Compute the graphs of $S_1$, $S_3$, and $S_{10}$ and compare
+                    them to the graph of $f$.
+              \item Where does the Fourier series of $f$ converge? To what does
+                    it converge?
+              \item Show that the solution of the heat equation discussed in
+                    problem 5 of section 9.1 satisfies the initial condition
+                    at all $x\in[0,\pi]$ except $x=\pi$.
+          \end{enumerate}
+          \setcounter{enumi}{6}
+    \item Let $f$ be a twice continuously differentiable $2\pi$ periodic
+          function. Prove that the Fourier series of $f$ converges to $f$
+          uniformly.
+          \setcounter{enumi}{9}
+    \item A subset $E\subseteq \mathbb{R}$ is said to have \textbf{measure zero}
+          if, given any $\varepsilon>0$, there is a countable family of intervals
+          $\{I_n\}_{n=1}^\infty$ such that $E\subseteq\cup I_n$ and
+          $\sum length(I_n)\leq \varepsilon$.
+          \begin{enumerate}
+              \item Show that any finite set of points has measure zero.
+              \item Show that the set $\{\frac{1}{n}\}$ has measure zero.
+              \item Show that any countable set has measure zero. Remark:
+                    There are uncountable sets of measure zero.
+          \end{enumerate}
+\end{enumerate}
+
+\subsection{Mean-square Convergence}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Let $\{f_n\}$ be a sequence of continuous functions on $[a,b]$ that
+          converges to a function $f$ uniformly. Prove that $f_n\to f$ in the
+          mean-square sense.
+    \item Let $[a,b]$ be a finite interval.
+          \begin{enumerate}
+              \item Construct a sequence of continuous functions on $[a,b]$,
+                    $\{f_n\}$, so that $f_n\to 0$ pointwise but
+                    $\lVert f_n\rVert_2\to\infty$.
+              \item Construct a sequence of continuous functions on $[a,b]$,
+                    $\{f_n\}$, so that $\lVert f_n\rVert_2\to\infty$ but
+                    $\{f_n(x)\}$ does not converge to 0 for any $x\in[a,b]$.
+          \end{enumerate}
+          \setcounter{enumi}{5}
+    \item \begin{enumerate}
+              \item Let $f$ be a piecewise continuous function on $[\pi,\pi]$.
+                    Prove that there is a sequence of continuous functions
+                    $f_n$ on $[\pi,\pi]$ so that $f_n\to f$ in mean-square sense.
+              \item Use the idea of the proof of theorem 9.4.6 to show that
+                    the Fourier series of a piecewise continuous function $f$
+                    converges to $f$ in the mean-square sense.
+          \end{enumerate}
+          \setcounter{enumi}{8}
+    \item Let $f$ be a continuously differentiable function on $[-\pi,\pi]$
+          such that \\$\int_{-\pi}^\pi f(x)dx=0$. Prove that
+              \begin{equation}
+                  \int_{-\pi}^\pi \lvert f'(x)\rvert^2dx
+                  \geq \int_{-\pi}^\pi \lvert f(x)\rvert^2dx.
+                  \label{eq:9.4_9_given}
+              \end{equation}
+              Prove that strict equality holds in \eqref{eq:9.4_9_given} if and
+              only if $f(x)=a\cos x+b\sin x$ for some constants $a$ and $b$.
+\end{enumerate}
+
+\end{document}

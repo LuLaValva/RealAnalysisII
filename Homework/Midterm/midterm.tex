@@ -1203,7 +1203,14 @@
                   p(\lambda)=\sum_{i=1}^N(x_i+\lambda y_i)^2.
             \]
             Explain why $p(\lambda)$ has either two complex roots or a double
-            real root. Use this fact to prove the \textbf{Cauchy-Schwartz
+            real root.
+            \begin{proof}
+                  \begin{align*}
+                        \sum_{i=1}^N(x_i+\lambda y_i)^2 & = \sum_{i=1}^Nx_i^2+2x_i\lambda y_i + y_i^2                          \\
+                                                        & = \sum_{i=1}^Nx_i^2 + 2\lambda\sum_{i=1}^Nx_iy_i + \sum_{i=1}^Ny_i^2
+                  \end{align*}
+            \end{proof}
+            Use this fact to prove the \textbf{Cauchy-Schwartz
                   Inequality}.
             \begin{equation}
                   \left\lvert\sum_{i=1}^Nx_iy_i\right\rvert \leq
@@ -1219,7 +1226,13 @@
             \begin{enumerate}
                   \item Explain why $c_o$ is a normed linear space with the norm
                         $\lVert\cdot\rVert_\infty$.
+                        \begin{enumerate}
+                              \item 
+                        \end{enumerate}
                   \item Prove that $c_o$ is complete.
+                        \begin{proof}
+                              
+                        \end{proof}
                   \item Show that the set of sequences which are zero after
                         finitely many terms is dense in $c_o$.
                   \item Show that $c_o$ is not dense in $\ell_\infty$.
@@ -1364,7 +1377,6 @@
                         all $p$.
                         \begin{proof}
                               \begin{align*}
-                                    \int_0^1\lvert f(x)\rvert^pdx & =
                                     \int_0^1\lvert f(x)\rvert^pdx & \geq 2\mu(\lVert f\rVert_\infty-\varepsilon)^p         \\
                                     \lVert f\rVert_p^p            & \geq 2\mu(\lVert f\rVert_\infty-\varepsilon)^p         \\
                                     \lVert f\rVert_p              & \geq \sqrt[p]{2\mu}(\lVert f\rVert_\infty-\varepsilon) \\
