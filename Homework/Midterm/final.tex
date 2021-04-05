@@ -29,20 +29,143 @@
       \item Let $a_n=1$ if $n=2^k$ for some positive integer $k$,
             and $a_n=\frac{1}{n!}$ otherwise.
             \begin{enumerate}
-                  \item Find $\lim\sup a_n$ and $\lim\inf a_n$.
-                  \item Find $\lim\sup\frac{\lvert a_{n+1}\rvert}{\lvert a_n\rvert}$.
-                  \item Find $\lim\sup\lvert a_n\rvert^\frac{1}{n}$.
+                  \item Find $\limsup a_n$ and $\liminf a_n$.
+                        \begin{proof}
+                              Let $\bar s=1$ and $\varepsilon>0$ be given.
+                              Then choose any $N>0$.
+                              It follows that, for all $n>N$,
+                              \begin{align*}
+                                    a_n & = \begin{cases}
+                                          1            & n=2^k      \\
+                                          \frac{1}{n!} & n \neq 2^k
+                                    \end{cases}    \\
+                                        & \leq \begin{cases}
+                                          1 & n=2^k      \\
+                                          1 & n \neq 2^k
+                                    \end{cases} \\
+                                        & = 1                            \\
+                                        & = \bar s                       \\
+                                        & \leq \bar s + \varepsilon.
+                              \end{align*}
+                              Moreover, for any selected $N$ we can choose
+                              $n_o=2^N$ so that
+                              \begin{align*}
+                                    a_{n_o} & = 1                        \\
+                                            & = \bar s                   \\
+                                            & \geq \bar s - \varepsilon.
+                              \end{align*}
+                              Therefore, $\limsup a_n=1$.
+                        \end{proof}
+                        \begin{proof}
+                              Let $\underline{s}=0$ and $\varepsilon>0$ be given.
+                              Then choose $N>\frac{1}{\varepsilon}$.
+                              It follows that, for all $n>N$,
+                              \begin{align*}
+                                    a_n & = \begin{cases}
+                                          1            & n=2^k      \\
+                                          \frac{1}{n!} & n \neq 2^k
+                                    \end{cases}     \\
+                                        & \geq \begin{cases}
+                                          \frac{1}{n!} & n=2^k      \\
+                                          \frac{1}{n!} & n \neq 2^k
+                                    \end{cases}  \\
+                                        & = \frac{1}{n!}                  \\
+                                        & \geq 0                          \\
+                                        & = \underline{s}                 \\
+                                        & \geq \underline{s}-\varepsilon.
+                              \end{align*}
+                              Moreover, for any selected $N$ we can choose
+                              $n_o=2^N+1$ so that
+                              \begin{align*}
+                                    a_{n_o} & = \frac{1}{n_o!}             \\
+                                            & \leq \frac{1}{n_o}           \\
+                                            & \leq \frac{1}{N}             \\
+                                            & \leq \varepsilon             \\
+                                            & = 0 + \varepsilon            \\
+                                            & = \underline{s}+\varepsilon.
+                              \end{align*}
+                              Therefore, $\liminf a_n=0$.
+                        \end{proof}
+                  \item Find $\limsup\frac{\lvert a_{n+1}\rvert}{\lvert a_n\rvert}$.
+                        \begin{proof}
+                              Let $b_n=\frac{\lvert a_{n+1}\rvert}{\lvert a_n\rvert}$
+                              and $n_k=2^k-1$. Then
+                              \begin{align*}
+                                    b_{n_k} & = \frac{\lvert a_{n_k+1}\rvert}{\lvert a_{n_k}\rvert} \\
+                                            & = \frac{a_{2^k}}{a_{2^k-1}}                           \\
+                                            & = \frac{1}{\frac{1}{(2^k-1)!}}                        \\
+                                            & = (2^k-1)!                                            \\
+                                            & = n_k!
+                              \end{align*}
+                              Which is clearly divergent. Since $b$ has a divergent
+                              subsequence, it must be divergent in the sup norm.
+                              Therefore $\limsup b_n = \infty$.
+                        \end{proof}
+                  \item Find $\limsup\lvert a_n\rvert^\frac{1}{n}$.
+                        \begin{proof}
+                              Let $\bar s = 1$ and $\varepsilon>0$ be given.
+                              Then for any $N>0$,
+                              it follows that for all $n>N$,
+                              \begin{align*}
+                                    \lvert a_n\rvert^\frac{1}{n} & = \begin{cases}
+                                          \lvert 1\rvert^\frac{1}{n}           & n=2^k      \\
+                                          \lvert\frac{1}{n!}\rvert^\frac{1}{n} & n \neq 2^k
+                                    \end{cases} \\
+                                                                 & = \begin{cases}
+                                          1                      & n=2^k      \\
+                                          \sqrt[n]{\frac{1}{n!}} & n \neq 2^k
+                                    \end{cases} \\
+                                                                 & \leq 1                      \\
+                                                                 & = \bar s                    \\
+                                                                 & \leq \bar s + \varepsilon.
+                              \end{align*}
+                              Moreover, it can be shown that, for $n_o=2^N$,
+                              \begin{align*}
+                                    a_{n_o} & = 1                        \\
+                                            & = \bar s                   \\
+                                            & \geq \bar s - \varepsilon.
+                              \end{align*}
+                              Therefore, $\limsup\lvert a_n\rvert^\frac{1}{n} = \bar s = 1$.
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{4}
       \item Let $\{a_n\}$ be a sequence of real numbers and suppose
-            that $\lim\sup a_n$ is finite. Let $\{c_n\}$ be another
+            that $\limsup a_n$ is finite. Let $\{c_n\}$ be another
             sequence and suppose that $c_n\to c$.
             \begin{enumerate}
                   \item Prove that, if $c>0$, then
                         \begin{equation}
-                              \lim\sup c_na_n = c\lim\sup a_n.
+                              \limsup c_na_n = c\limsup a_n.
                               \label{eq:6.1_5_given}
                         \end{equation}
+                        \begin{proof}
+                              Let $\varepsilon>0$ be given. Since $\limsup a_n$
+                              is finite, we know there exists some $\bar s_a\in \mathbb{R}$
+                              and $N_a>0$ so that for all $n>N_a$,
+                              \[
+                                    a_n \leq \bar s_a + \varepsilon
+                              \]
+                              and there exists some $n_o>N_a$ so that
+                              \[
+                                    a_{n_o} \geq \bar s_a - \varepsilon.
+                              \]
+                              We also know that, because $c_n\to c$, there exists
+                              $N_c>0$ so that for all $n>N_c$,
+                              \[
+                                    \lvert c_n-c\rvert < \varepsilon.
+                              \]
+                              Let $N=\max(N_a, N_c)$. Then it follows that, for all
+                              $n>N$,
+                              % TODO. This is not finished. I need to figure out the middle.
+                              \begin{align*}
+                                    c_na_n \leq c\bar s_a + \varepsilon
+                              \end{align*}
+                              and there exists some $n_o>N$ so that
+                              \begin{align*}
+                                    c_{n_o}a_{n_o} \geq c\bar s_a - \varepsilon
+                              \end{align*}
+                              Therefore, $\limsup c_na_n = c\bar s_a = c\limsup a_n$.
+                        \end{proof}
                   \item Find a counterexample to \eqref{eq:6.1_5_given}
                         with $c<0$.
             \end{enumerate}
@@ -50,7 +173,38 @@
       \item Let $\{a_n\}$ be a bounded sequence of real numbers and
             let $P$ be the set of limit points of $\{a_n\}$. Limit
             points are defined in Section 2.6. Prove that
-            $\lim\sup a_n=\sup P$ and $\lim\inf a_n=\inf P$.
+            $\limsup a_n=\sup P$ and $\liminf a_n=\inf P$.
+            \begin{proof}
+                  The Bolzano-Weierstrass theorem tells us that $\{a_n\}$ must
+                  have one or more convergent subsequences. By definition, $P$
+                  contains the limits of each of these convergent subsequences.
+                  Then for all subsequences $a_{n_k}$ of $a_n$ and $\varepsilon>0$,
+                  \begin{align*}
+                        \lim a_{n_k} - \sup P & \leq \varepsilon           \\
+                        \lim a_{n_k}          & \leq \sup P + \varepsilon.
+                  \end{align*}
+                  Because all points on $P$ are limits of subsequences of $a_n$,
+                  there must also exist some $a_{n_s}$ so that
+                  \begin{align*}
+                        \lvert\lim a_{n_s} - \sup P\rvert & \leq \varepsilon           \\
+                        \lim a_{n_s} - \sup P             & \geq -\varepsilon          \\
+                        \lim a_{n_s}                      & \geq \sup P - \varepsilon.
+                  \end{align*}
+                  Therefore, $\limsup a_n=\sup P$.
+                  \medbreak
+                  We also know that
+                  \begin{align*}
+                        \lim a_{n_k} - \inf P & \geq -\varepsilon         \\
+                        \lim a_{n_k}          & \leq \inf P - \varepsilon
+                  \end{align*}
+                  and that there exists some $a_{n_i}$ so that
+                  \begin{align*}
+                        \lvert\lim a_{n_i} - \inf P\rvert & \leq \varepsilon           \\
+                        \lim a_{n_i} - \inf P             & \leq \varepsilon           \\
+                        \lim a_{n_i}                      & \geq \inf P + \varepsilon.
+                  \end{align*}
+                  Thus, $\liminf a_n=\inf P$.
+            \end{proof}
 \end{enumerate}
 
 \subsection{Series of Real Constants}
@@ -59,32 +213,154 @@
             or diverge:
             \begin{enumerate}
                   \item $\sum\frac{3^j}{j!}$
+                        \begin{proof}[Converges.]
+                              By the ratio test,
+                              \begin{align*}
+                                    \limsup \frac{a_{j+1}}{a_j} & = \limsup \frac{\frac{3^{j+1}}{(j+1)!}}{\frac{3^j}{j!}} \\
+                                                                & = \limsup \frac{3^{j+1}(j!)}{3^j(j+1)!}                 \\
+                                                                & = \limsup \frac{3(3^j)j!}{3^j(j+1)j!}                   \\
+                                                                & = \limsup \frac{3}{j+1}                                 \\
+                                    \frac{3}{j+1}               & < 1 \textrm{ for all $j>2$, so}                         \\
+                                    \limsup \frac{3}{j+1}       & < 1
+                              \end{align*}
+                        \end{proof}
                   \item $\sum\frac{\sqrt{n}}{1+n^2}$
+                        \begin{proof}[Converges.]
+                              By the comparison test,
+                              \begin{align*}
+                                    a_n & = \frac{\sqrt{n}}{1+n^2}       \\
+                                        & \leq \frac{n^\frac{1}{2}}{n^2} \\
+                                        & = \frac{1}{n^\frac{3}{2}},
+                              \end{align*}
+                              which is a convergent $p$-series because $p>1$
+                        \end{proof}
                   \item $\sum\frac{2^j}{j^2}$
+                        \begin{proof}[Diverges.]
+                              By the ratio test,
+                              \begin{align*}
+                                    \frac{a_{j+1}}{a_j}                    & = \frac{\frac{2^{j+1}}{(j+1)^2}}{\frac{2^j}{j^2}}        \\
+                                                                           & = \frac{2^{j+1}j^2}{2^j(j+1)^2}                          \\
+                                                                           & = \frac{2j^2}{(j+1)^2}                                   \\
+                                                                           & \geq \frac{2j^2}{\frac{3}{2}j^2} \textrm{ for all $j>5$} \\
+                                                                           & = \frac{4}{3}                                            \\
+                                    \therefore \liminf \frac{a_{j+1}}{a_j} & \geq \frac{4}{3} > 1
+                              \end{align*}
+                        \end{proof}
                   \item $\sum\frac{j^2}{j!}$
+                        \begin{proof}[Converges.]
+                              By the ratio test,
+                              \begin{align*}
+                                    \frac{a_{j+1}}{a_j}                  & = \frac{\frac{(j+1)^2}{(j+1)!}}{\frac{j^2}{j!}} \\
+                                                                         & = \frac{(j+1)^2j!}{j^2(j+1)j!}                  \\
+                                                                         & = \frac{j^2+2j+1}{j^3+j^2}                      \\
+                                                                         & \leq \frac{j^2}{j^3}+\frac{2j}{j^2}+\frac{1}{j} \\
+                                                                         & = \frac{4}{j}                                   \\
+                                                                         & < 1 \textrm{ for all $j>4$}                     \\
+                                    \therefore\limsup\frac{a_{j+1}}{a_j} & < 1
+                              \end{align*}
+                        \end{proof}
                   \item $\sum(\sqrt{j+1}-\sqrt{j})$
+                        \begin{proof}[Diverges.]
+                              This is a telescoping series, expanded as
+                              \begin{align*}
+                                    \sum_{j=0}^k(\sqrt{j+1}-\sqrt{j}) & = \sqrt{1}-\sqrt{0}+\sqrt{2}-\sqrt{1}+\ldots+\sqrt{k+1}-\sqrt{k}     \\
+                                                                      & = -\sqrt{0}+(\sqrt{1}-\sqrt{1})+\ldots(\sqrt{k}-\sqrt{k})+\sqrt{k+1} \\
+                                                                      & = \sqrt{k+1}
+                              \end{align*}
+                              As $k$ grows to $\infty$, $\sqrt{k+1}$ also grows to $\infty$.
+                              Therefore, the series diverges.
+                        \end{proof}
                   \item $\sum\frac{\sqrt{j+1}-\sqrt{j}}{j}$
+                        \begin{proof}[Converges.]
+                              By the comparison test,
+                              \begin{align*}
+                                    \frac{\sqrt{j+1}-\sqrt{j}}{j} & = \frac{(\sqrt{j+1}-\sqrt{j})(\sqrt{j+1}+\sqrt{j})}{j(\sqrt{j+1}+\sqrt{j})} \\
+                                                                  & = \frac{j+1-j}{j(\sqrt{j+1}+\sqrt{j})}                                      \\
+                                                                  & \leq \frac{1}{2j\sqrt{j}}                                                   \\
+                                                                  & = \frac{1}{2j^{\frac{3}{2}}}
+                              \end{align*}
+                              which is a $p$-series with $p>1$, so the series is convergent.
+                        \end{proof}
                   \item $\sum e^{-j+\sin j}$
+                        \begin{proof}[Converges.]
+                              By the comparison test,
+                              \begin{align*}
+                                    e^{-j+\sin j} & = \frac{e^{\sin j}}{e^j} \\
+                                                  & \leq \frac{e}{e^j}
+                              \end{align*}
+                              and
+                              \begin{align*}
+                                    \sum \frac{e}{e^j} & = e\sum \frac{1}{e^j}               \\
+                                                       & = e\sum \left(\frac{1}{e}\right)^j.
+                              \end{align*}
+                              This is a power series, which converges because the power term is less than 1.
+                              Therefore, the series converges.
+                        \end{proof}
                   \item $\sum\frac{j+\cos j}{j}$
+                        \begin{proof}[verges.]
+                              It is clear that
+                              \begin{align*}
+                                    \sum\frac{j+\cos j}{j} & = \sum\left(\frac{j}{j} + \frac{\cos j}{j}\right) \\
+                                                           & = \sum(1) + \sum\left(\frac{\cos j}{j}\right).
+                              \end{align*}
+                              Without a doubt, $\sum(1)$ is divergent and therefore the series is divergent.
+                        \end{proof}
             \end{enumerate}
             \setcounter{enumi}{3}
       \item Consider the series $\sum_{j=1}^\infty\frac{1}{j(j+1)}$.
             \begin{enumerate}
                   \item Prove that the series converges by the
                         comparison test
+                        \begin{proof}
+                              By the comparison test,
+                              \begin{align*}
+                                    \frac{1}{j(j+1)} & \leq \frac{1}{j(j)} \\
+                                                     & = \frac{1}{j^2}
+                              \end{align*}
+                              which is a $p$-series with $p>1$, so the series converges.
+                        \end{proof}
                   \item What information does the ratio test give?
+                        \begin{align*}
+                              \frac{a_{j+1}}{a_j} & = \frac{\frac{1}{(j+1)(j+2)}}{\frac{1}{j(j+1)}} \\
+                                                  & = \frac{j(j+1)}{(j+1)(j+2)}                     \\
+                                                  & = \frac{j}{j+2}
+                        \end{align*}
+                        INCONCLUSIVE, $\lim\frac{j}{j+2}=1$.
                   \item Use the formula $\frac{1}{j(j+1)}=\frac{1}{j}-\frac{1}{j+1}$
                         to compute the partial sums. Show explicitly that
                         the partial sums converge.
+                        \begin{align*}
+                              \sum_{j=1}^k \left(\frac{1}{j}-\frac{1}{j+1}\right) & = \frac{1}{1}-\frac{1}{2}+\frac{1}{2}-\frac{1}{3}+\ldots+\frac{1}{k}-\frac{1}{k+1}                               \\
+                                                                                  & = 1 + (\frac{1}{2}-\frac{1}{2}) + (\frac{1}{3}-\frac{1}{3}) + \ldots + (\frac{1}{k}-\frac{1}{k}) - \frac{1}{k+1} \\
+                                                                                  & = 1 - \frac{1}{k+1}
+                        \end{align*}
+                        This series approaches $1$ as $k$ approaches infinity.
+                        % TODO: If you feel like it, do a little cauchy argument.
             \end{enumerate}
             \setcounter{enumi}{12}
       \item Prove that if $a_j\geq 0$ for all $j$ and $\sum a_j$
             converges, then $\sum a_j^2$ converges.
+            \begin{proof}
+                  We know that, because all $a_j\geq 0$ and the sequence converges,
+                  there exists some $J$ for each $\varepsilon$ so that
+                  $\sum_{j=J}^\infty \lvert a_j\rvert < \varepsilon$. Without loss of generality,
+                  we can assume that $\varepsilon<1$. Then for all $j>J$, $a_j<1$. This
+                  tells us that for all $j>J$ $a_j^2<a_j$, and thus
+                  $\sum_{j=J}^\infty a_j^2 < \sum_{j=J}^\infty \lvert a_j\rvert < \varepsilon$.
+                  Therefore, $\sum a_j^2$ converges.
+            \end{proof}
       \item Suppose that $a_j\geq 0$ and that $\sum a_j$ converges.
             \begin{enumerate}
                   \item Show by example that it is not necessarily true that
                         $\sum\sqrt{a_j}$ converges.
+                        \begin{proof}
+                              Let $a_j=\frac{1}{j^2}$. Then $\sum a_j$ is a convergent
+                              $p$-series, with $p>1$. However, in this case
+                              $\sum\sqrt{a_j}$ is the harmonic series, which is not
+                              convergent.
+                        \end{proof}
                   \item Show that $\sum\frac{\sqrt{a_j}}{j}$ converges.
+                        % TODO: This one is hard.
             \end{enumerate}
 \end{enumerate}
 
