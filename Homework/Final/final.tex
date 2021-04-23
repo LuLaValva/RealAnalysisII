@@ -374,9 +374,51 @@
                         \[
                               \frac{d}{dx}\sum_{j=0}^\infty x_j= \sum_{j=0}^\infty(j+1)x_j.
                         \]
+                        \begin{proof}
+                              Let $f(x)_j=x^j$. Then because $\lvert x\rvert<1$ we know that
+                              \begin{align*}
+                                    \sum_{j=0}^\infty f(x)_j & = \sum_{j=0}^\infty x^j                                 \\
+                                                             & = \frac{1}{1+x} \textrm{(Convergent geometric series)}.
+                              \end{align*}
+                              It can also be shown that
+                              \begin{align*}
+                                    \sum_{j=0}^\infty f'(x)_j & = \sum_{j=0}^\infty jx^{j-1}
+                              \end{align*}
+                              and, by the ratio test,
+                              \begin{align*}
+                                    \lim_{j\to\infty}\frac{a_{j+1}}{a_j} & = \lim_{j\to\infty} \frac{(j+1)x^j}{jx^{j-1}}  \\
+                                                                         & = \lim_{j\to\infty} \frac{(j+1)x}{j}           \\
+                                                                         & = \lim_{j\to\infty} \frac{jx}{j} + \frac{x}{j} \\
+                                                                         & = \lim_{j\to\infty} x + \frac{x}{j}            \\
+                                                                         & < \lim_{j\to\infty} x + \frac{1}{j}            \\
+                                                                         & = x.
+                              \end{align*}
+                              Therefore, $\sum f(x)_j$ and $\sum f'(x)_j$ converge uniformly and thus
+                              $f(x)=\sum f(x)_j$ is continuously differentiable on $(0,1)$.
+
+                              Because $f(x)$ is continuously differentiable, we can be certain that
+                              \begin{align*}
+                                    \frac{d}{dx}\sum_{j=0}^\infty x^j & = \sum_{j=0}^\infty \frac{d}{dx} x^j \\
+                                                                      & = \sum_{j=0}^\infty jx^{j-1}         \\
+                                                                      & = 0 + \sum_{j=1}^\infty jx^{j-1}     \\
+                                                                      & = \sum_{j=0}^\infty(j+1)x_j.
+                              \end{align*}
+                        \end{proof}
                   \item Use the fact that $\sum_{j=0}^\infty x^j=\frac{1}{1+x}$ on
                         $(-1,1)$ to find a formula for $\sum_{j=0}^\infty(j+1)x^j$.
+                        \begin{align*}
+                              \sum_{j=0}^\infty(j+1)x^j & = \frac{d}{dx}\sum_{j=0}^\infty x^j \\
+                                                        & = \frac{d}{dx}\frac{1}{1+x}         \\
+                                                        & = -\frac{1}{(1+x)^2}
+                        \end{align*}
                   \item Use this to calculate $\sum_{j=0}^\infty\frac{j+1}{2^j}$ exactly.
+                        \begin{align*}
+                              \sum_{j=0}^\infty\frac{j+1}{2^j} & = \sum_{j=0}^\infty (j+1)\left(\frac{1}{2}\right)^j                    \\
+                                                               & = -\frac{1}{\left(1+\frac{1}{2}\right)^2}                              \\
+                                                               & = -\frac{1}{1+2(1)\left(\frac{1}{2}\right)+\left(\frac{1}{2}\right)^2} \\
+                                                               & = -\frac{1}{\frac{9}{4}}                                               \\
+                                                               & = -\frac{4}{9}
+                        \end{align*}
             \end{enumerate}
             \setcounter{enumi}{4}
       \item \begin{enumerate}
@@ -385,6 +427,24 @@
                               f(x)\equiv x+\sum_{j=1}^\infty x(1-x)^j
                         \]
                         converges for every $x$ in $[0,1]$.
+                        \begin{proof}
+                              Without loss of generality, we can represent this series as
+                              \[
+                                    f(x)\equiv\begin{cases}
+                                          0                            & x = 0       \\
+                                          x+\sum_{j=1}^\infty x(1-x)^j & x \in (0,1) \\
+                                          1                            & x = 1
+                                    \end{cases}.
+                              \]
+                              Then, for any $x, (1-x)\in(0,1)$, we can say that
+                              \begin{align*}
+                                    f(x) & \equiv x+\sum_{j=1}^\infty x(1-x)^j   \\
+                                         & = x + x\sum_{j=1}^\infty (1-x)^j      \\
+                                         & = x + x\left(\frac{1}{1+(1-x)}\right) \\
+                                         & = x + \frac{x}{2-x}                   \\
+                                         & = \frac{3x}{2} - 1
+                              \end{align*}
+                        \end{proof}
                   \item What is $f(x)$?
                   \item Is the convergence uniform on $[0,1]$?
             \end{enumerate}
