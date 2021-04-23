@@ -4,5 +4,7 @@
 **/*.log
 **/*.synctex.gz
 **/*.pdf
+**/*.bbl
+**/*.blg
 ltex*
 .DS_Store

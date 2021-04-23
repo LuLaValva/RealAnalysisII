@@ -5,6 +5,8 @@
     "**/*.fdb_latexmk": true,
     "**/*.fls": true,
     "**/*.log": true,
-    "**/*.synctex.gz": true
+    "**/*.synctex.gz": true,
+    "**/*.bbl": true,
+    "**/*.blg": true,
   }
 }
