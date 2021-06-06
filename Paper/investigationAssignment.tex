@@ -64,11 +64,19 @@
         \captionof{figure}{6 evenly spaced points (sin)}
     \end{Figure}
 
-    These polynomials are calculated using a method called Lagrange Interpolation \cite{enwiki:lagrange_polynomial}, \cite{mathworld:lagrange_polynomial}. To preform this method, we begin with $n$ data points labelled $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$. In order to find a polynomial that passes through all of the points, we use
+    These polynomials are calculated using a method called \textbf{Lagrange Interpolation} \cite{enwiki:lagrange_polynomial}\cite{mathworld:lagrange_polynomial}. To preform this method, we begin with $n$ data points that will be referred to as $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$. In order to find a polynomial that passes through all of these points, we use
     \begin{align*}
         P(x) & = \sum_{j=1}^n\left(y_j\prod_{\substack{k=1 \\ k\neq j}}^n
-        \frac{x-x_k}{x_j-x_k} \right).
+        \frac{x-x_k}{x_j-x_k} \right)
     \end{align*}
+    or, written more explicitly,
+    \begin{align*}
+         & \phantom{+} y_1\frac{(x-x_2)(x-x_3)\ldots(x-x_n)}{(x_1-x_2)(x_1-x_3)\ldots(x_1-x_n)} \\
+         & + y_2\frac{(x-x_1)(x-x_3)\ldots(x-x_n)}{(x_2-x_1)(x_2-x_3)\ldots(x_2-x_n)}           \\
+         & \vdots                                                                               \\
+         & + y_n\frac{(x-x_1)(x-x_2)\ldots(x-x_{n-1})}{(x_n-x_1)(x_n-x_2)\ldots(x_n-x_{n-1})}.
+    \end{align*}
+    In most cases, this formula works very well. In fact, as the number of points tends towards infinity, 
 
 
     \bibliographystyle{acm}
